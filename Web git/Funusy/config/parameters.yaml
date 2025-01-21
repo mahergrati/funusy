@@ -1,0 +1,5 @@
+# app/config/parameters.yaml
+parameters:
+    twilio_account_sid: 'AC761fc38412ff46f13c7d5710cd0f5c3f'
+    twilio_auth_token: '9cec1235e97dd0b1ff2dde609cf8180c'
+    twilio_phone_number: '+13184060130'

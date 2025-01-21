@@ -1,0 +1,42 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Garantie{% endblock %}
+
+{% block body %}
+    <br>
+    <br>
+    <br>
+
+    <h1>Garantie</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>IdGarantie</th>
+            <td>{{ garantie.idGarantie }}</td>
+        </tr>
+        <tr>
+            <th>IdCredit</th>
+            <td>{{ garantie.idCredit }}</td>
+        </tr>
+        <tr>
+            <th>NatureGarantie</th>
+            <td>{{ garantie.natureGarantie }}</td>
+        </tr>
+        <tr>
+            <th>ValeurGarantie</th>
+            <td>{{ garantie.valeurGarantie }}</td>
+        </tr>
+        <tr>
+            <th>Preuve</th>
+            <td>{{ garantie.preuve }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_garantie_f_index') }}">back to list</a>
+
+    <a href="{{ path('app_garantie_f_edit', {'idGarantie': garantie.idGarantie}) }}">edit</a>
+
+    {{ include('garantie_f/_delete_form.html.twig') }}
+{% endblock %}

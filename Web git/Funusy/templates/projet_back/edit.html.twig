@@ -1,0 +1,13 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Edit Projet{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+    {{ include('projet_back/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('projet_back/_delete_form.html.twig', {'button_label': 'Delete'}) }}
+    
+    </div>
+    </div>
+{% endblock %}

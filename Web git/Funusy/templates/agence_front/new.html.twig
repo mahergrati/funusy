@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+
+<title>New Agence</title>
+
+{% block body %}
+    <h1>Create new Agence</h1>
+
+    {{ include('agence_front/_form.html.twig') }}
+
+    <a href="{{ path('app_agence_front_index') }}">back to list</a>
+{% endblock %}

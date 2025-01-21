@@ -1,0 +1,329 @@
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Tivo is a HTML landing page template built with Bootstrap to help you crate engaging presentations for SaaS apps and convert visitors into users.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content="" /> <!-- website name -->
+    <meta property="og:site" content="" /> <!-- website link -->
+    <meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content="" /> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content="" /> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content="" /> <!-- where do you want your post to link to -->
+    <meta property="og:type" content="article" />
+
+    <!-- Website Title -->
+    <title>
+        {% block title %}
+            Funusy
+        {% endblock %}
+    </title>
+    
+     
+
+ 
+    
+    
+    {% block stylesheets %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/fontawesome-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/swiper.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/styles.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link href="{{ asset('FRONT/css/card_front.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/fontawesome-all.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/swiper.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/magnific-popup.css') }}" rel="stylesheet">
+    <link href="{{ asset('FRONT/css/styles.css') }}" rel="stylesheet">
+    {% endblock %}
+
+
+    <link rel="icon" href="{{ asset('FRONT/images/Asset.png') }}">
+  </head>
+  <body data-spy="scroll" data-target=".fixed-top">
+  
+<!-- Preloader -->
+<div class="spinner-wrapper">
+  <div class="spinner">
+      <div class="bounce1"></div>
+      <div class="bounce2"></div>
+      <div class="bounce3"></div>
+  </div>
+</div>
+<!-- end of preloader -->
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+  <div class="container">
+
+      <!-- Text Logo - Use this if you don't have a graphic logo -->
+      <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
+
+      <!-- Image Logo -->
+      <a class="navbar-brand logo-image" href="{{ path('app_home_page') }}"><img src="{{ asset('FRONT/images/Asset2.png') }}" alt="alternative"></a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-awesome fas fa-bars"></span>
+          <span class="navbar-toggler-awesome fas fa-times"></span>
+      </button>
+      <!-- end of mobile menu toggle button -->
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="{{ path('app_home_page') }}">HOME <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="{{ path('app_compte_index') }}"> ACCOUNTS</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="{{ path('app_investissement_front_index') }}"> TRANSACTIONS</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="{{ path('app_credit') }}"> CREDITS</a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="{{ path('app_projet') }}">PROJECTS</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link page-scroll" href="#video"> VIDEO</a>
+              </li>
+          </ul>
+      </div>
+  </div> <!-- end of container -->
+</nav> <!-- end of navbar -->
+<!-- end of navigation -->
+<svg class="header-frame" width="250" height="0" viewBox="100 100 50 2" xmlns="http://www.w3.org/2000/svg">
+  <rect fill="#5f4def" width="250" height="200" />
+</svg>
+
+<!-- Content wrapper -->
+<div class="content-wrapper">
+  <!-- Content -->
+
+  <div class="wrapper" id="app">
+      <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
+          <div class="card-item__side -front">
+              <div class="card-item__focus" v-bind:class="{'-active' : focusElementStyle }" v-bind:style="focusElementStyle" ref="focusElement"></div>
+
+              <div class="card-form">
+                  <div class="card-list">
+                      <div class="card-item__cover">
+                          <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
+                      </div>
+                      <div class="card-item" ref="cardItem">
+                          <div class="card-item__wrapper">
+                              <div class="card-item__top">
+                                  <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" class="card-item__chip">
+                                  <div class="card-item__type">
+                                      <transition name="slide-fade-up">
+                                          <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" v-bind:key="getCardType" alt="" class="card-item__typeImg">
+                                      </transition>
+                                  </div>
+                              </div>
+                              <label for="cardNumber" class="card-item__number" ref="cardNumber">
+                                  <template v-if="getCardType === 'amex'">
+                                      <span v-for="(n, index) in amexCardMask" :key="index">
+                                          <transition name="slide-fade-up">
+                                              <div class="card-item__numberItem" v-if="index > 4 && index < 14 && cardNumber.length > index && n.trim() !== ''">*</div>
+                                              <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" :key="index" v-else-if="cardNumber.length > index">${cardNumber[index]}</div>
+                                              <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" v-else :key="index + 1">${n}</div>
+                                          </transition>
+                                      </span>
+                                  </template>
+
+                                  <template v-else>
+                                      <span v-for="(n, index) in otherCardMask" :key="index">
+                                          <transition name="slide-fade-up">
+                                              <div class="card-item__numberItem" v-if="index > 4 && index < 15 && cardNumber.length > index && n.trim() !== ''">*</div>
+                                              <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" :key="index" v-else-if="cardNumber.length > index">${cardNumber[index]}</div>
+                                              <div class="card-item__numberItem" :class="{ '-active' : n.trim() === '' }" v-else :key="index + 1">${n}</div>
+                                          </transition>
+                                      </span>
+                                  </template>
+                              </label>
+                              <div class="card-item__content">
+                                  <label for="cardName" class="card-item__info" ref="cardName">
+                                      <div class="card-item__holder">Card Holder</div>
+                                      <transition name="slide-fade-up">
+                                          <div class="card-item__name" v-if="cardName.length" key="1">
+                                              <transition-group name="slide-fade-right">
+                                                  <span class="card-item__nameItem" v-for="(n, index) in cardName.replace(/\s\s+/g, ' ')" v-if="index === index" v-bind:key="index + 1">${n}</span>
+                                              </transition-group>
+                                          </div>
+                                          <div class="card-item__name" id="cardName" v-else key="2">Full Name</div>
+                                      </transition>
+                                  </label>
+
+                                  <div class="card-item__date" ref="cardDate">
+                                      <label for="cardMonth" class="card-item__dateTitle">Expires</label>
+                                      <label for="cardMonth" class="card-item__dateItem">
+                                          <transition name="slide-fade-up">
+                                              <span v-if="cardMonth" v-bind:key="cardMonth">${cardMonth}</span>
+                                              <span v-else key="2">MM</span>
+                                          </transition>
+                                      </label>
+                                      /
+                                      <label for="cardYear" class="card-item__dateItem">
+                                          <transition name="slide-fade-up">
+                                              <span v-if="cardYear" v-bind:key="cardYear">${String(cardYear).slice(2,4)}</span>
+                                              <span v-else key="2">YY</span>
+                                          </transition>
+                                      </label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-item__side -back">
+                          <div class="card-item__cover">
+                              <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
+                          </div>
+                          <div class="card-item__band"></div>
+                          <div class="card-item__cvv">
+                              <div class="card-item__cvvTitle">CVV2</div>
+                              <div class="card-item__cvvBand">
+                                  <span v-for="(n, index) in cardCvv" :key="index">*</span>
+                              </div>
+                              <div class="card-item__type">
+                                  <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" class="card-item__typeImg">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="content-wrapper">
+              <div class="container-xxl flex-grow-1 container-p-y">
+                  <div class="row justify-content-center">
+                      <div class="col-md-8">
+                          <form method="post" action="{{ path('app_newcarte_bancaire') }}" novalidate>
+                            <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                             
+                              <div class="row">
+                                <div class="col-md-20"> <!-- Adjusted column size to col-md-8 -->
+                                    <label class="form-label" for="basic-icon-default-rib">RIB</label>
+                                    <div class="input-group">
+                                        {{ form_widget(form.rib, {'attr': {'class': 'form-control'}}) }}
+                                       &nbsp;&nbsp; <button type="submit" class="btn btn-primary">{{ button_label|default('Add') }}</button>
+                                    </div>
+                                    <div class="text-danger mt-2">{{ form_errors(form.rib) }}</div>
+                                </div>
+                            </div>
+                            
+                            
+                             
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+{% block js %}
+<script src="{{ asset('FRONT/js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+<script src="{{ asset('FRONT/js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
+<script src="{{ asset('FRONT/js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
+<script src="{{ asset('FRONT/js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+<script src="{{ asset('FRONT/js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+<script src="{{ asset('FRONT/js/jquery.magnific-popup.js') }}"></script> <!-- Magnific Popup for lightboxes -->
+<script src="{{ asset('FRONT/js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+<script src="{{ asset('FRONT/js/scripts.js') }}"></script> <!-- Custom scripts -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js'></script>
+<script src='https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js'></script>
+<script src="{{ asset('FRONT/js/script.js') }}"></script>
+<script src="{{ asset('FRONT/js/card_front.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{ asset('FRONT/js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+<script src="{{ asset('FRONT/js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
+<script src="{{ asset('FRONT/js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
+<script src="{{ asset('FRONT/js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+<script src="{{ asset('FRONT/js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+<script src="{{ asset('FRONT/js/jquery.magnific-popup.js') }}"></script> <!-- Magnific Popup for lightboxes -->
+<script src="{{ asset('FRONT/js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+<script src="{{ asset('FRONT/js/scripts.js') }}"></script> <!-- Custom scripts -->
+{% endblock %}
+<div class="content-backdrop fade"></div>
+</div>
+<!-- Content wrapper -->
+</div>
+<!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
+</div>
+<!-- / Layout wrapper -->
+
+
+<!-- end of header -->
+<!-- Scripts -->
+
+<script>
+
+// Add an event listener to the submit button
+$('#submit-btn').click(function() {
+    // Gather card information from the Vue component
+    var cardNumber = $('#cardNumber').val();
+    var cardName = $('#cardName').val();
+    var cardMonth = $('#cardMonth').val();
+    var cardYear = $('#cardYear').val();
+    var cardCvv = $('#cardCvv').val();
+    var rib= $('#rib').val();
+
+    // Create an object with the card information
+    var cardData = {
+        cardNumber: cardNumber,
+        cardName: cardName,
+        cardExpiration: cardMonth + '/' + cardYear,
+        cardCvv: cardCvv,
+        rib: rib,
+    };
+
+    // Make an AJAX request to the Symfony controller
+    $.ajax({
+        url: '{{path('app_newcarte_bancaire')}}',
+        type: 'POST',
+        contentType: 'application/json', // Set content type to JSON
+        dataType: 'json', // Expect JSON response
+        data: JSON.stringify(cardData), // Convert data to JSON string
+        success: function(response) {
+            // Handle success response
+            console.log('Received data:', response);
+        },
+        error: function(error) {
+            // Handle error response
+            console.error(error);
+        }
+    });
+});
+
+
+
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,51 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Calculate Profit{% endblock %}
+
+{% block body %}
+
+<br>
+<br>
+<br>
+<br>
+<div class="container mt-5">
+    <h1>Calculate Profit</h1>
+
+    <form action="{{ path('app_profit') }}" method="post" id="profit-form">
+        <div class="form-group">
+            <label for="investmentAmount">Investment Amount:</label>
+            <input type="number" id="investmentAmount" name="investmentAmount" class="form-control" value="{{ app.request.request.get('investmentAmount') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="investmentPeriod">Investment Period (months):</label>
+            <input type="number" id="investmentPeriod" name="investmentPeriod" class="form-control" value="{{ app.request.request.get('investmentPeriod') }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="projectType">Project Type:</label>
+            <select id="projectType" name="projectType" class="form-control" required>
+                <option value="AGRICULTURE" {% if app.request.request.get('projectType') == 'AGRICULTURE' %}selected{% endif %}>Agriculture</option>
+                <option value="TECHNOLOGIQUE" {% if app.request.request.get('projectType') == 'TECHNOLOGIQUE' %}selected{% endif %}>Technologique</option>
+                <option value="BOURSE" {% if app.request.request.get('projectType') == 'BOURSE' %}selected{% endif %}>Bourse</option>
+                <option value="IMMOBILIER" {% if app.request.request.get('projectType') == 'IMMOBILIER' %}selected{% endif %}>Immobilier</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Calculate Profit</button>
+    </form>
+
+    {% if profit is not null %}
+        <div class="result">
+            <p>Expected Profit: {{ profit|number_format(2, '.', ' ') }} DT</p>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    // Optional: Add JavaScript for interactivity
+    document.getElementById('profit-form').addEventListener('submit', function(event) {
+        // Add your JavaScript logic here (e.g., form validation, AJAX submission)
+    });
+</script>
+{% endblock %}

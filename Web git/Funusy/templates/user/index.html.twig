@@ -1,0 +1,154 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/user_index.css') }}">
+{% endblock %}
+
+{% block body %}
+    <style>
+        .user-table {
+            width: 120%; /* Increased table width */
+            border-collapse: collapse;
+        }
+
+        .user-table th, .user-table td {
+            border: 1px solid #ddd;
+            padding: 16px; /* Increased padding for better readability and increased row height */
+            text-align: center; /* Center align content */
+        }
+
+        .user-table th {
+            background-color: #4287f5; /* Changed background color for table header */
+            color: #fff; /* Changed text color for table header */
+        }
+
+        .user-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .user-table tr:hover {
+            background-color: #c9c9c9; /* Changed hover color */
+        }
+
+        .btn1 {
+            text-decoration: none;
+            padding: 12px 20px; /* Adjusted button padding */
+            border: none;
+            cursor: pointer;
+            border-radius: 5px; /* Slightly increased border-radius */
+        }
+
+        .btn1-show {
+            background-color: #2eb82e; /* Changed background color for Show button */
+            color: #fff; /* Changed text color for Show button */
+        }
+
+        .btn1-edit {
+            background-color: #ffa500; /* Changed background color for Edit button */
+            color: #fff; /* Changed text color for Edit button */
+        }
+
+        .btn1-create-new {
+            background-color: #007bff; /* Changed background color for Create new button */
+            color: #fff; /* Changed text color for Create new button */
+            margin-top: 20px; /* Increased top margin */
+            display: inline-block;
+            border-radius: 5px; /* Slightly increased border-radius */
+            text-decoration: none;
+            padding: 10px 20px; /* Adjusted padding */
+        }
+
+        .btn1:hover {
+            filter: brightness(0.8);
+        }
+
+        .pagination {
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .pagination a.active {
+            background-color: #4287f5;
+            color: #fff;
+            border: 1px solid #4287f5;
+        }
+    </style>
+
+    <h1>User index</h1>
+  <form action="{{ path('app_hello') }}" method="get">
+        <label for="max">Items per page:</label>
+        <select name="max" id="max">
+            <option value="5" {% if maxPerPage == 5 %} selected {% endif %}>5</option>
+            <option value="10" {% if maxPerPage == 10 %} selected {% endif %}>10</option>
+            <option value="20" {% if maxPerPage == 20 %} selected {% endif %}>20</option>
+            <!-- Add more options if needed -->
+        </select>
+        <input type="submit" value="Apply">
+    </form>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>Id_user</th>
+                <th>NomUser</th>
+                <th>PrenomUser</th>
+                <th>EmailUser</th>
+                <th>Mdp</th>
+                <th>Salaire</th>
+                <th>DateNaissance</th>
+                <th>Cin</th>
+                <th>Tel</th>
+                <th>AdresseUser</th>
+                <th>RoleUser</th>
+                <th>NumericCode</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in pagination %}
+                <tr>
+                    <td>{{ user.idUser }}</td>
+                    <td>{{ user.nomUser }}</td>
+                    <td>{{ user.prenomUser }}</td>
+                    <td>{{ user.emailUser }}</td>
+                    <td>{{ user.mdp }}</td>
+                    <td>{{ user.salaire }}</td>
+                    <td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+                    <td>{{ user.cin }}</td>
+                    <td>{{ user.tel }}</td>
+                    <td>{{ user.adresseUser }}</td>
+                    <td>{{ user.roleUser }}</td>
+                    <td>{{ user.numericCode }}</td>
+                    <td>
+                        <a href="{{ path('app_users_show', {'id_user': user.id}) }}" class="btn1 btn1-show">Show</a>
+                        <a href="{{ path('app_users_edit', {'id_user': user.id}) }}" class="btn1 btn1-edit">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="13">No records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ <div class="pagination">
+        {% set totalPages = (pagination.count / maxPerPage)|round(0, 'ceil') %}
+        {% for page in range(1, totalPages) %}
+            <a href="{{ path('app_hello', {'page': page, 'max': maxPerPage}) }}">{{ page }}</a>
+        {% endfor %}
+    </div>
+  
+
+   
+
+    <a href="{{ path('app_users_new') }}" class="btn1 btn1-create-new">Create new</a>
+{% endblock %}

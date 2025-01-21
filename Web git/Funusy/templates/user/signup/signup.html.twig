@@ -1,0 +1,21 @@
+
+{% block title %}Sign Up{% endblock %}
+
+{% block body %}
+    <h1>Sign Up</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.nomUser) }}
+        {{ form_row(form.prenomUser) }}
+        {{ form_row(form.emailUser) }}
+        {{ form_row(form.mdp) }}
+        {{ form_row(form.salaire) }}
+        {{ form_row(form.dateNaissance) }}
+        {{ form_row(form.cin) }}
+        {{ form_row(form.tel) }}
+        {{ form_row(form.adresseUser) }}
+        {{ form_row(form.roleUser) }}
+
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    {{ form_end(form) }}
+{% endblock %}

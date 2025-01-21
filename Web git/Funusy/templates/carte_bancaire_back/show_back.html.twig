@@ -1,0 +1,70 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Credit cards index{% endblock %}
+
+{% block body %}
+<br><br>
+
+{% for flashMessage in app.flashes('error') %}
+<div class="alert alert-danger" role="alert">
+    {{ flashMessage }}
+</div>
+{% endfor %}
+<br><br><br><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Credit cards index</h3>
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>numCarte</th>
+                            <th>rib</th>
+                            <th>dateExp</th>
+                            <th>code</th>
+                            <th>cvv2</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for carte_bancaire in cartes %}
+                            <tr>
+                                <td>{{ carte_bancaire.numCarte }}</td>
+                                <td>{{ carte_bancaire.rib }}</td>
+                            
+                                <td>{{ carte_bancaire.dateExp ? carte_bancaire.dateExp|date('Y-m-d') : '' }}</td>
+
+                                <td>{{ carte_bancaire.code }}</td>
+                                <td>{{ carte_bancaire.cvv2}}</td>
+
+                                
+                                <td>
+                                    <a href="{{ path('app_carte_bancaire_show', {'numCarte': carte_bancaire.numCarte}) }}" class="btn btn-primary">show</a>
+                                   
+                                </td>
+                                <td>
+
+                                   
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                
+            </div>
+        </div>
+
+        <br>
+        <a href="{{ path('app_newcarte_bancaire_back') }}" class="btn btn-success">Create new</a>
+
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+<div class="row">
+    {% if form_errors(form) %}
+        <div class="alert alert-danger" role="alert">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+    <div class="col-md-12">
+
+        <div class="form-group">
+            {{ form_label(form.dateSignal, 'Signal Date', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.dateSignal, {'attr': {'class': 'form-control js-datepicker'}}) }}
+            {{ form_errors(form.dateSignal) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(form.description, 'Signal Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': 10, 'style': 'resize: vertical;', 'placeholder': 'Enter signal description'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(form.idCommentaire, 'Commentaire', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.idCommentaire, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.idCommentaire) }}
+        </div>
+    </div>
+</div>
+<button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

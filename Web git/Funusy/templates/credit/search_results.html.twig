@@ -1,0 +1,19 @@
+{% for credit in credits %}
+    <tr>
+        <td>{{ credit.getIdCredit() }}</td>
+        <td>{{ credit.getMontantCredit() }}</td>
+        <td>{{ credit.getDureeCredit() }}</td>
+        <td>{{ credit.getDateCredit() ? credit.getDateCredit()|date('Y-m-d') : '' }}</td>
+        <td>{{ credit.getTauxCredit() }}</td>
+        <td>{{ credit.getStatus() }}</td>
+        <td>{{ credit.getUser() ? credit.getUser().getNomUser() : 'Utilisateur inconnu' }}</td>
+        <td>
+            <a href="{{ path('app_credit_show', {'idCredit': credit.idCredit}) }}">show</a>
+            <a href="{{ path('app_credit_edit', {'idCredit': credit.idCredit}) }}">edit</a>
+        </td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="8">No records found</td>
+    </tr>
+{% endfor %}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Statement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .transaction-details {
+            margin-top: 20px;
+        }
+        .logo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="logo">
+        <img src="https://i.ibb.co/k0Z7VTK/Asset-1-1.png" width="60" alt="Your Bank Logo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4nZ-se9v19uechItPtOPnTucstsym_As4RsJo9K33cA&s" alt="Tunisian Central Bank Logo">
+        <img src="https://static.vecteezy.com/system/resources/previews/000/628/669/original/vector-made-in-tunisia-flag-icon.jpg
+" width="40" alt="Your Bank Logo">
+    </div>
+    <h1>Transaction Details</h1>
+    <div class="transaction-details">
+        <p><strong>ID:</strong> {{ transaction.idTransaction }}</p>
+        <p><strong>RIB:</strong> {{ transaction.rib.rib }}</p>
+        <p><strong>Amount:</strong> {{ transaction.montantTransaction }}</p>
+        <p><strong>Date:</strong> {{ transaction.dateTransaction|date('Y-m-d') }}</p>
+    </div>
+</div>
+</body>
+</html>

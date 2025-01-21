@@ -1,0 +1,32 @@
+{{ form_start(form) }}
+{{ form_widget(form._token) }}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center"></div>
+    
+    <div class="card-body">
+        {% if form_errors(form) %}
+            <div class="alert alert-danger" role="alert">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+        
+        <div class="row">
+           
+            
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="basic-icon-default-rib">num_carte</label>
+                {{ form_widget(form.num_carte, {'attr': {'class': 'form-control'}}) }}
+                <div class="text-danger mt-2">{{ form_errors(form.num_carte) }}</div>
+            </div>
+        </div>
+
+       
+        
+        
+        <button type="submit" class="btn btn-primary">{{ button_label|default('Send') }}</button>
+        <a href="{{ path('app_compte_index') }}" class="btn btn-secondary">Back to list</a>
+    </div>
+</div>
+
+{{ form_end(form) }}

@@ -1,0 +1,399 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Funusy{% endblock %}
+
+{% block body %}
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="stocks-container-bg">
+                <div class="stocks-container">
+
+                    {% for stock in stocks %}
+                        <div class="stock-change">
+                            <a href="https://www.marketwatch.com/investing/stock/{{ stock.name }}">{{ stock.name }}
+                            <span class="change-percentage {% if stock.changePercentage > 0 %}positive{% elseif stock.changePercentage < 0 %}negative{% else %}neutral{% endif %}">
+
+                {% if stock.changePercentage > 0 %}&#x25B2;
+                {% elseif stock.changePercentage < 0 %}&#x25BC;
+                {% else %}&#x2013;
+                {% endif %}
+                                {{ stock.changePercentage }}%
+            </span></a>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <style>
+                .change-percentage {
+                     display: flex;
+                    justify-content:  right;
+                }
+
+                .stocks-container-bg {
+                    height: 60px; /* set the height of the block */
+                    background-color: #7E8BBA;
+                    display: flex; /* add display: flex */
+                    align-items: center; /* add align-items: center */
+                    overflow: clip;
+                }
+
+                .stocks-container {
+                    position: relative;
+                     display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    animation: scroll 24s linear infinite;
+                }
+
+                .stocks-container:hover {
+
+                    animation-play-state: paused; /* add this line */
+
+                }
+
+                .stock-change {
+                    width: 120px;
+                    margin-right: 10px;
+                    height: 50px;
+                    padding: 2px;
+                    border-radius: 7px; /* add border-radius for rounded corners */
+                    background-color: #f2f2f2; /* add a background color */
+                }
+
+                .stock-name {
+                    justify-content: left;
+                    font-weight: bold;
+                    margin-right: 10px;
+                }
+
+                .change-percentage {
+                    font-weight: bold;
+                    font-size: 14px;
+                }
+
+                .positive {
+                    color: green;
+                }
+
+                .negative {
+                    color: red;
+                }
+
+                .neutral {
+                    color: black;
+                }
+
+                @keyframes scroll {
+                    0% {
+                        transform: translateX(-10%);
+                    }
+                    100% {
+                        transform: translateX(-30%);
+
+                    }
+
+                }
+                
+        .chart-container {
+            width: 100%;
+            height: 300px; /* Adjust the height as needed */
+            position: relative;
+        }
+
+        .chart-container2 {
+            width: 100%;
+            height: 300%;
+        }
+        
+    
+            </style>
+            <script> const stocksContainer = document.querySelector('.stocks-container');
+                stocksContainer.addEventListener('mouseover', () => {
+                    stocksContainer.style.animationPlayState = 'paused';
+                });
+                stocksContainer.addEventListener('mouseout', () => {
+                    stocksContainer.style.animationPlayState = 'running';
+                });
+            </script>
+        </main>
+    </div>
+
+    
+<!--wiem -->
+    
+    <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="row">
+                <!-- Summary Cards Section -->
+                <div class="col-md-6 mb-4">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <img src="{{ asset('BACK/assets/img/icons/unicons/chart-success.png') }}" alt="chart success" class="avatar rounded">
+                                        <span class="d-block mb-1">Total Projects</span>
+                                        <h3 class="card-title text-nowrap mb-2">{{ projets|length }}</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt1">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body d-flex align-items-center justify-content-between">
+                                    <div>
+                                        <img src="{{ asset('BACK/assets/img/icons/unicons/chart-success.png') }}" alt="chart success" class="avatar rounded">
+                                        <span class="d-block mb-1">Invested Projects</span>
+                                        <h3 class="card-title text-nowrap mb-2">{{ investedProjectCount }}</h3>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn p-0" type="button" id="cardOpt2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt2">
+                                            <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                            <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more summary cards here -->
+                    </div>
+                </div>
+                <!-- Projects by Type Section -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Projects by Type</h5>
+                            <ul class="list-group">
+                                {% for projectType in projectCountByType %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center project-type" data-type="{{ projectType.typeProjet }}">
+                                    {{ projectType.typeProjet }}
+                                    <span class="badge bg-primary rounded-pill">{{ projectType.projectCount }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Project Details Section -->
+    <div id="project-details" class="col-md-6 mt-4" style="display: none;">
+        <div class="card">
+            <div class="card-body">
+                <h5 id="project-type-title" class="card-title"></h5>
+                <div id="project-list"></div>
+            </div>
+        </div>
+    </div>
+    
+  
+    
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Percentage of Projects by Type</h5>
+                            <div id="chart-container" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card mb-2" >
+                        <div class="card-body">
+                            <h5 class="card-title">Accounts by type</h5>
+                            <canvas id="chart-container2" style="height: 200px;"></canvas>             
+                         </div>
+                    </div>
+                </div>
+                
+            </div>
+        
+    </div>
+
+    <!--Nouha -->
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var stats = {{ stats|json_encode()|raw }};
+            var labels = Object.keys(stats);
+            var data = Object.values(stats);
+    
+            var ctx = document.getElementById('chart-container2').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                        'rgba(149, 206, 255)',
+                            'rgba(92, 92, 97)',
+                            'rgba(255, 206, 86, 1)',
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutoutPercentage: 10, // Adjust this value for the size of the hole in the middle (50 means a perfect donut shape)
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                    },
+                }
+            });
+        });
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/highcharts@9.1.2"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    
+    <script>
+    (function($) {
+        $(document).ready(function() {
+            // DataTables initialization code here
+            $('#project-table').DataTable({
+                paging: false,
+                searching: false, // Disabling DataTables default search
+                ordering: true,
+                info: false,
+                responsive: true
+            });
+    
+            // AJAX search functionality
+            $("#searchInput").on("input", function () {
+                var query = $(this).val();
+    
+                // Make an Ajax request to the search endpoint
+                $.ajax({
+                    url: "{{ path('app_projet_back_search') }}",
+                    type: 'GET',
+                    dataType: 'html',
+                    data: {query: query},
+                    success: function (data) {
+                        $("#project-table-body").html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+    
+            // Load Highcharts chart
+            fetch('{{ path('app_projet_back_chart') }}')
+                .then(response => response.json())
+                .then(data => {
+                    Highcharts.chart('chart-container', {
+                        chart: {
+                            type: 'pie'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        series: [{
+                            name: 'Percentage',
+                            data: data
+                        }]
+                    });
+                });
+    
+    
+            // Add click event listeners to project type list items
+            $('.project-type').click(function() {
+                var projectType = $(this).data('type');
+                $('#project-type-title').text('Projects of Type: ' + projectType);
+                // Make an Ajax request to fetch projects of this type
+                $.ajax({
+                    url: "{{ path('app_projet_back_projects_by_type') }}",
+                    type: 'GET',
+                    dataType: 'html',
+                    data: {type: projectType},
+                    success: function (data) {
+                        $("#project-list").html(data);
+                        $('#project-details').show();
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+        });
+    })(jQuery);
+    </script>
+    
+    {% endblock %}
+    
+
+
+
+    {% block stylesheets %}
+    <style>
+       /* Custom styles for the search input */
+       /* New styles for the container */
+       .search-container {
+           position: relative;
+           width: 100%;
+           margin-top: 10px;
+           margin-bottom: 20px;
+       }
+
+       /* Positioning the search input */
+       .search-container input[type=search] {
+           position: absolute;
+           top: 0;
+           right: 0; /* Align to the right */
+           width: calc(100% - 40px); /* Adjusted width */
+           padding: 10px;
+           border: 1px solid #ccc;
+           border-radius: 6px;
+           box-sizing: border-box;
+           font-size: 16px;
+           background-color: #f2f2f2; /* Background color */
+           transition: border-color 0.3s ease-in-out; /* Smooth transition for border color */
+       }
+   </style>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

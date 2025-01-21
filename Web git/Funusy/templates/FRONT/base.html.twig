@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description"
+          content="Tivo is a HTML landing page template built with Bootstrap to help you crate engaging presentations for SaaS apps and convert visitors into users.">
+    <meta name="author" content="Inovatik">
+
+    <!-- OG Meta Tags to improve the way the post looks when you share the page on LinkedIn, Facebook, Google+ -->
+    <meta property="og:site_name" content=""/> <!-- website name -->
+    <meta property="og:site" content=""/> <!-- website link -->
+    <meta property="og:title" content=""/> <!-- title shown in the actual shared post -->
+    <meta property="og:description" content=""/> <!-- description shown in the actual shared post -->
+    <meta property="og:image" content=""/> <!-- image link, make sure it's jpg -->
+    <meta property="og:url" content=""/> <!-- where do you want your post to link to -->
+    <meta property="og:type" content="article"/>
+
+    <!-- Website Title -->
+    <title>
+        {% block title %}
+            Funusy
+        {% endblock %}
+    </title>
+
+    <!-- Styles -->
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap&subset=latin-ext"
+              rel="stylesheet">
+        <link href="{{ asset('FRONT/css/bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ asset('FRONT/css/fontawesome-all.css') }}" rel="stylesheet">
+        <link href="{{ asset('FRONT/css/swiper.css') }}" rel="stylesheet">
+        <link href="{{ asset('FRONT/css/magnific-popup.css') }}" rel="stylesheet">
+        <link href="{{ asset('FRONT/css/styles.css') }}" rel="stylesheet">
+    {% endblock %}
+
+    <!-- Favicon  -->
+    <link rel="icon" href="{{ asset('FRONT/images/Asset.png') }}">
+</head>
+<body data-spy="scroll" data-target=".fixed-top">
+
+<!-- Preloader -->
+<div class="spinner-wrapper">
+    <div class="spinner">
+        <div class="bounce1"></div>
+        <div class="bounce2"></div>
+        <div class="bounce3"></div>
+    </div>
+</div>
+<!-- end of preloader -->
+
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+
+        <!-- Text Logo - Use this if you don't have a graphic logo -->
+        <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Tivo</a> -->
+
+        <!-- Image Logo -->
+        <a class="navbar-brand logo-image" href={{ path('app_home_page') }}><img
+                    src="{{ asset('FRONT/images/Asset2.png') }}" alt="alternative"></a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-awesome fas fa-bars"></span>
+            <span class="navbar-toggler-awesome fas fa-times"></span>
+        </button>
+        <!-- end of mobile menu toggle button -->
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#header">HOME <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#accounts"> ACCOUNTS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#details"> TRANSACTIONS</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#credits"> CREDITS</a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#pricing">PROJECTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_investissement_front_index') }}" class="nav-link page-scroll">INVESTMENTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_profit') }}" class="nav-link page-scroll">PROFITS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="#video"> VIDEO</a>
+                </li>
+            </ul>
+            <span class="nav-item">
+                     <a class="btn-outline-sm" href="{{ path('app_user1') }}">LOG IN</a>
+                 </span>
+        </div>
+    </div> <!-- end of container -->
+</nav> <!-- end of navbar -->
+<!-- end of navigation -->
+
+
+<!-- Header -->
+<header id="header" class="header">
+    <div class="header-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-xl-5">
+                    <div class="text-container">
+                        <h1>Welcome to Funusy</h1>
+                        <p class="p-large">Step into the Future with Funusy! Your Virtual Banking Companion offers
+                            secure transactions, tailored services, and innovation. Join us today! </p>
+                        <a class="btn-solid-lg page-scroll" href="{{ path('signup_step1') }}">SIGN UP</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6 col-xl-7">
+                    <div class="image-container">
+                        <div class="img-wrapper">
+                            <img class="img-fluid" src="{{ asset('FRONT/images/hii.png') }}" alt="alternative">
+                        </div> <!-- end of img-wrapper -->
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of header-content -->
+</header> <!-- end of header -->
+<svg class="header-frame" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+     viewBox="0 0 1920 310">
+    <defs>
+        <style>.cls-1 {
+                fill: #5f4def;
+            }</style>
+    </defs>
+    <title>header-frame</title>
+    <path class="cls-1"
+          d="M0,283.054c22.75,12.98,53.1,15.2,70.635,14.808,92.115-2.077,238.3-79.9,354.895-79.938,59.97-.019,106.17,18.059,141.58,34,47.778,21.511,47.778,21.511,90,38.938,28.418,11.731,85.344,26.169,152.992,17.971,68.127-8.255,115.933-34.963,166.492-67.393,37.467-24.032,148.6-112.008,171.753-127.963,27.951-19.26,87.771-81.155,180.71-89.341,72.016-6.343,105.479,12.388,157.434,35.467,69.73,30.976,168.93,92.28,256.514,89.405,100.992-3.315,140.276-41.7,177-64.9V0.24H0V283.054Z"/>
+</svg>
+<!-- end of header -->
+
+
+<!-- Customers -->
+<div class="slider-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Image Slider -->
+                <div class="slider-container">
+                    <div class="swiper-container image-slider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/customer-logo-1.png') }}"
+                                     alt="alternative">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/customer-logo-2.png') }}"
+                                     alt="alternative">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/customer-logo-3.png') }}"
+                                     alt="alternative">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/customer-logo-4.png') }}"
+                                     alt="alternative">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/customer-logo-5.png') }}"
+                                     alt="alternative">
+                            </div>
+                            <div class="swiper-slide">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/customer-logo-6.png') }}"
+                                     alt="alternative">
+                            </div>
+                        </div> <!-- end of swiper-wrapper -->
+                    </div> <!-- end of swiper container -->
+                </div> <!-- end of slider-container -->
+                <!-- end of image slider -->
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of slider-1 -->
+<!-- end of customers -->
+
+
+<!-- Description -->
+<div class="cards-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="above-heading">DESCRIPTION</div>
+                <h2 class="h2-heading">Funusy Bank: Enhancing Leads with Efficient Processes</h2>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-fluid" src="{{ asset('FRONT/images/fund.png') }}" alt="alternative">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Investment Artistry</h3>
+                        <p>Where Precision Meets Creativity to Sculpt Your Financial Future. Explore the Expertise and
+                            Mastery That Elevate Your Investments Above the Rest.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-fluid" src="{{ asset('FRONT/images/credit.png') }}" alt="alternative">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Credit Mastery</h3>
+                        <p>Unlock Financial Freedom with Our Credit Simulator. Seamlessly Navigate Your Path to
+                            Success.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img class="img-fluid" src="{{ asset('FRONT/images/currency-exchange.png') }}"
+                             alt="alternative">
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Currency Compass</h3>
+                        <p>Navigate Global Markets with Confidence. Exchange Currencies Seamlessly with Funusy.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of cards-1 -->
+<!-- end of description -->
+
+
+<!-- accounts -->
+<div id="accounts" class="tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="above-heading"></div>
+                <h3 class="h2-heading"> Accounts in Flight: Innovate with Delight ! </h3>
+                <p class="p-heading"> Step up your finance game, with Funusy's quick acclaim, where innovation reigns,
+                    efficiency gains!</p>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Tabs Links -->
+                <ul class="nav nav-tabs" id="argoTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#tab-1" role="tab"
+                           aria-controls="tab-1" aria-selected="true"><i class="fas fa-list"></i>Account details </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#tab-2" role="tab"
+                           aria-controls="tab-2" aria-selected="false"><i class="fas fa-envelope-open-text"></i>Card
+                            details</a>
+                    </li>
+
+                </ul>
+                <!-- end of tabs links -->
+
+                <!-- Tabs Content -->
+                <div class="tab-content" id="argoTabsContent">
+
+                    <!-- Tab -->
+                    <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="tab-1">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="image-container">
+                                    <img class="img-fluid rounded " src="{{ asset('FRONT/images/form_account.png') }}"
+                                         alt="alternative">
+                                </div> <!-- end of image-container -->
+                            </div> <!-- end of col -->
+                            <div class="col-lg-6">
+                                <div class="text-container">
+                                    <h3>Banking Made Simple with Funusy !</h3>
+                                    <p>Getting started with Funusy is a breeze. Simply fill out and submit the <a
+                                                class="blue page-scroll" href="sign-up.html">Account Creation Form </a>,
+                                        and you'll gain access to our banking services and features within just 24
+                                        hours. </p>
+                                    <ul class="list-unstyled li-space-lg">
+                                        <li class="media">
+                                            <i class="fas fa-square"></i>
+                                            <div class="media-body">Easily create and manage bank accounts</div>
+                                        </li>
+                                        <li class="media">
+                                            <i class="fas fa-square"></i>
+                                            <div class="media-body">Manage forms and landing pages for your services
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <i class="fas fa-square"></i>
+                                            <div class="media-body">Easily adding or removing account holders using our
+                                                user-friendly control panel
+                                            </div>
+                                        </li>
+                                        &nbsp &nbsp
+                                        <h6> Join Funusy today and take control of your finances with ease ! </h6>
+                                    </ul>
+                                    <a class="btn-solid-reg" href="{{ path('app_compte_new') }}">GET YOUR ACCOUNT</a>
+
+
+                                </div> <!-- end of text-container -->
+                            </div> <!-- end of col -->
+                        </div> <!-- end of row -->
+                    </div> <!-- end of tab-pane -->
+                    <!-- end of tab -->
+
+                    <!-- Tab -->
+                    <div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="tab-2">
+                        <div class="row">
+                            <div class="col-lg-6">
+
+                                <div class="image-container">
+
+                                    <img class="img-fluid" src="{{ asset('FRONT/images/card_form.png') }}"
+                                         alt="alternative">
+                                </div> <!-- end of image-container -->
+                            </div> <!-- end of col -->
+                            <div class="col-lg-6">
+                                <div class="text-container">
+                                    <h3>Efficient Card Management Tools ! </h3>
+                                    <p>Card management is a fundamental aspect of our platform, designed to streamline
+                                        your financial activities and ensure you stay on top of your card details.</p>
+                                    <ul class="list-unstyled li-space-lg">
+                                        <li class="media">
+                                            <i class="fas fa-square"></i>
+                                            <div class="media-body">Access card details, get SMS alerts before expiry
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <i class="fas fa-square"></i>
+                                            <div class="media-body">Seamlessly plan and schedule card details updates.
+                                            </div>
+                                        </li>
+                                        <li class="media">
+                                            <i class="fas fa-square"></i>
+                                            <div class="media-body">Monitor your cards' activity and optimize their
+                                                usage effortlessly.
+                                            </div>
+                                        </li>
+
+                                        &nbsp &nbsp
+                                        <h6>Streamline finance with Funusy's card management!</h6>
+                                    </ul>
+                                    <a class="btn-solid-reg" href="{{ path('app_newcarte_bancaire') }}">GET YOUR
+                                        CARD</a>
+                                </div> <!-- end of text-container -->
+                            </div> <!-- end of col -->
+                        </div> <!-- end of row -->
+                    </div> <!-- end of tab-pane -->
+                    <!-- end of tab -->
+
+                    <!-- Tab -->
+
+
+                </div> <!-- end of tab content -->
+                <!-- end of tabs content -->
+
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div> <!-- end of tabs -->
+<!-- end of features -->
+
+<!-- credits -->
+<div id="credits" class="tabs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="above-heading"></div>
+                <h3 class="h2-heading"> Funusy Credit: Fly High, Reach the Sky! ! </h3>
+                <p class="p-heading"> Boost your financial aim, with Funusy's credit claim, where innovation flames,
+                    your goals it helps attain!</p>
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <!-- Tabs Links -->
+                <ul class="nav nav-tabs" id="creditsTabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="nav-tab-1" data-toggle="tab" href="#credit-tab-1" role="tab"
+                           aria-controls="credit-tab-1" aria-selected="true"><i class="fas fa-list"></i>Credit details
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-tab-2" data-toggle="tab" href="#credit-tab-2" role="tab"
+                           aria-controls="credit-tab-2" aria-selected="false"><i class="fas fa-envelope-open-text"></i>Guarantee
+                            details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="nav-tab-3" data-toggle="tab" href="#credit-tab-3" role="tab"
+                           aria-controls="credit-tab-3" aria-selected="false"><i class="fas fa-envelope-open-text"></i>Simulation
+                            de crédit</a>
+                    </li>
+
+                </ul>
+
+                <!-- end of tabs links -->
+
+                <!-- Tabs Content -->
+                <div class="tab-content" id="creditsTabsContent">
+                    <div class="tab-content" id="creditsTabsContent">
+
+                        <!-- Tab -->
+                        <div class="tab-pane fade show active" id="credit-tab-1" role="tabpanel"
+                             aria-labelledby="credit-tab-1">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="image-container">
+                                        <img class="img-fluid rounded "
+                                             src="{{ asset('FRONT/images/form_account.png') }}" alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Banking Made Simple with Funusy !</h3>
+                                        <p>Turn dreams into reality with Funusy's credit solutions! Flexible terms,
+                                            reliable support, and endless possibilities await. Empower your goals today
+                                            ! </p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Flexible Terms</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Trusted Reputation</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Tailored Solution
+                                                </div>
+                                            </li>
+                                            &nbsp &nbsp
+                                            <h6>Join Funusy today, credit's sway, take financial reins, ease
+                                                remains! </h6>
+                                        </ul>
+                                        <a class="btn-solid-reg" href="{{ path('app_credit') }}">GET YOUR CREDIT</a>
+
+
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+                        <!-- end of tab -->
+
+                        <!-- Tab -->
+                        <div class="tab-pane fade" id="credit-tab-2" role="tabpanel" aria-labelledby="credit-tab-2">
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="image-container">
+
+                                        <img class="img-fluid" src="{{ asset('FRONT/images/card_form.png') }}"
+                                             alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3> Guarantee </h3>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Tax Efficiency</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Payment Flexibility</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Streamlined Processes.</div>
+                                            </li>
+
+                                            &nbsp &nbsp
+                                            <h6>Guarantee to Return the Credit,Your Financial Trust, We Respect!!</h6>
+                                        </ul>
+                                        <a class="btn-solid-reg" href="{{ path('app_garantie_f_index') }}">SUBMIT YOUR
+                                            GUARANTEE</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+                        <!-- end of tab -->
+                        <!-- Tab -->
+                        <div class="tab-pane fade" id="credit-tab-3" role="tabpanel" aria-labelledby="credit-tab-3">
+                            <div class="row">
+                                <div class="col-lg-6">
+
+                                    <div class="image-container">
+
+                                        <img class="img-fluid" src="{{ asset('FRONT/images/card_form.png') }}"
+                                             alt="alternative">
+                                    </div> <!-- end of image-container -->
+                                </div> <!-- end of col -->
+                                <div class="col-lg-6">
+                                    <div class="text-container">
+                                        <h3>Experience the Power of Simulated Credit with Funusy! </h3>
+                                        <p>Transform aspirations into achievements with Funusy's credit simulation
+                                            solutions! Enjoy adaptable terms, unwavering assistance, and boundless
+                                            opportunities. Realize your financial dreams with ease!</p>
+                                        <ul class="list-unstyled li-space-lg">
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Adaptable Terms</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Trusted Performance</div>
+                                            </li>
+                                            <li class="media">
+                                                <i class="fas fa-square"></i>
+                                                <div class="media-body">Customized Solutions</div>
+                                            </li>
+
+                                            &nbsp &nbsp
+                                            <h6>Embark on your journey with Funusy today, where credit simulation leads
+                                                the way to financial empowerment and peace of mind!</h6>
+                                        </ul>
+                                        <a class="btn-solid-reg" href="{{ path('app_simulation_index') }}">Open
+                                            Simulateur</a>
+                                    </div> <!-- end of text-container -->
+                                </div> <!-- end of col -->
+                            </div> <!-- end of row -->
+                        </div> <!-- end of tab-pane -->
+
+
+                    </div> <!-- end of tab content -->
+                    <!-- end of tabs content -->
+
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of tabs -->
+    <!-- end of features -->
+
+
+    <!-- Details(transactions) Lightboxes -->
+    <!-- Details Lightbox 1 -->
+    <div id="details-lightbox-1" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-8">
+                    <div class="image-container">
+                        &nbsp &nbsp
+                        <img class="img-fluid" src="{{ asset('FRONT/images/form_account.png') }}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-4">
+                    <h3>Get your account</h3>
+                    <hr>
+
+                    <p> Joining is a breeze – just complete and submit our Sign Up Form and you will receive access to
+                        the app.</p>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Effortless Sign Up</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">User-Focused Administration</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Seamless Account Creation</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Intuitive Formatting Tools</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Swift Email Verification</div>
+                        </li>
+
+                    </ul>
+                    <a class="btn-solid-reg mfp-close" href="{{ path('signup_step1') }}">SIGN UP</a> <a
+                            class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 1 -->
+
+    <!-- Details Lightbox 2 -->
+    <div id="details-lightbox-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-8">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{{ asset('FRONT/images/card_form.png') }}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-4">
+                    <h3>Funusy's Credit Card</h3>
+                    <hr>
+
+                    <p>At Funusy Bank, we're committed to simplifying financial management and making it rewarding.
+                        That's why we're excited to introduce our exclusive credit card,your gateway to a world of
+                        convenience and benefits.</p>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Building Your Financial Future</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Secure and Swift Verification</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Flexible Payment Options</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Global Acceptance</div>
+                        </li>
+
+                    </ul>
+                    <a class="btn-solid-reg mfp-close" href="sign-up.html">GET YOUR CARD</a> <a
+                            class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 2 -->
+
+    <!-- Details Lightbox 3 -->
+    <div id="details-lightbox-3" class="lightbox-basic zoom-anim-dialog mfp-hide">
+        <div class="container">
+            <div class="row">
+                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
+                <div class="col-lg-8">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{{ asset('FRONT/images/details-lightbox.png') }}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-4">
+                    <h3>Analytics Tools</h3>
+                    <hr>
+                    <h5>Core service</h5>
+                    <p>It's very easy to start using Tivo. You just need to fill out and submit the Sign Up Form and you
+                        will receive access to the app.</p>
+                    <ul class="list-unstyled li-space-lg">
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">List building framework</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Easy database browsing</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">User administration</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Automate user signup</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Quick formatting tools</div>
+                        </li>
+                        <li class="media">
+                            <i class="fas fa-square"></i>
+                            <div class="media-body">Fast email checking</div>
+                        </li>
+                    </ul>
+                    <a class="btn-solid-reg mfp-close" href="sign-up.html">SIGN UP</a> <a
+                            class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of lightbox-basic -->
+    <!-- end of details lightbox 3 -->
+    <!-- end of details lightboxes -->
+
+    <!-- Details -->
+    <div id="details" class="basic-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <h2>Elevate Your Banking Game, Funusy's Transactions Light the Flame!</h2>
+                        <p>Unlock the power of convenience with Funusy Bank's user-friendly app. Seamlessly manage your
+                            transactions and experience banking made simple. Join us today and take control of your
+                            financial journey!</p>
+                        <ul class="list-unstyled li-space-lg">
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Send and receive money easily through our app</div>
+                            </li>
+                            <li class="media">
+                                <i class="fas fa-square"></i>
+                                <div class="media-body">Effortlessly check the currency with our app</div>
+                            </li>
+                        </ul>
+                        <a class="btn-solid-reg" href="{{ path('app_transactionfront_new') }}">Make your
+                            transactions</a>
+                    </div> <!-- end of text-container -->
+                </div> <!-- end of col -->
+                <div class="col-lg-6">
+                    <div class="image-container">
+                        <img class="img-fluid" src="{{ asset('FRONT/images/transaction.png') }}" alt="alternative">
+                    </div> <!-- end of image-container -->
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-1 -->
+    <!-- end of details -->
+
+
+    <!-- Video -->
+    <div id="video" class="basic-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <!-- Video Preview -->
+                    <div class="image-container">
+                        <div class="video-wrapper">
+                            <a class="popup-youtube" href="https://www.youtube.com/watch?v=fLCjQJCekTs"
+                               data-effect="fadeIn">
+                                <img class="img-fluid" src="{{ asset('FRONT/images/video-image.png') }}"
+                                     alt="alternative">
+                                <span class="video-play-button">
+                                    <span></span>
+                                </span>
+                            </a>
+                        </div> <!-- end of video-wrapper -->
+                    </div> <!-- end of image-container -->
+                    <!-- end of video preview -->
+
+                    <div class="p-heading">What better way to show off Tivo marketing automation saas app than
+                        presenting you some great situations of each module and tool available to users in a video
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of basic-2 -->
+    <!-- end of video -->
+
+
+    <!-- Pricing -->
+    <div id="pricing" class="cards-2">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="above-heading">POJECTS</div>
+                    <h2 class="h2-heading">Projects Options Table</h2>
+                    <div class="button-wrapper">
+                        <a class="btn-solid-reg page-scroll" href="{{ path('app_projet') }}">project List </a>
+                    </div> <!-- end of col -->
+                </div>
+            </div>
+            <br>
+
+
+            <!-- Testimonials -->
+            <div class="slider-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <!-- Text Slider -->
+                            <div class="slider-container">
+                                <div class="swiper-container text-slider">
+                                    <div class="swiper-wrapper">
+
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid"
+                                                     src="{{ asset('FRONT/images/testimonial-1.jpg') }}"
+                                                     alt="alternative">
+                                            </div> <!-- end of image-wrapper -->
+                                            <div class="text-wrapper">
+                                                <div class="testimonial-text">My experience with Funusy Bank's virtual
+                                                    platform was life-saving! The convenience and efficiency of their
+                                                    website made banking hassle-free and accessible, ensuring I could
+                                                    manage my finances with ease. Thank you, Funusy Bank, for your
+                                                    exceptional virtual services!
+                                                </div>
+                                                <div class="testimonial-author">Jude Thorn - Online Marketer</div>
+                                            </div> <!-- end of text-wrapper -->
+                                        </div> <!-- end of swiper-slide -->
+                                        <!-- end of slide -->
+
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid"
+                                                     src="{{ asset('FRONT/images/testimonial-2.jpg') }}"
+                                                     alt="alternative">
+                                            </div> <!-- end of image-wrapper -->
+                                            <div class="text-wrapper">
+                                                <div class="testimonial-text">Thank you, Funusy, for offering flexible
+                                                    VAT and credit options. It's greatly appreciated!
+                                                </div>
+                                                <div class="testimonial-author">Roy Smith - Developer</div>
+                                            </div> <!-- end of text-wrapper -->
+                                        </div> <!-- end of swiper-slide -->
+                                        <!-- end of slide -->
+
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid"
+                                                     src="{{ asset('FRONT/images/testimonial-3.jpg') }}"
+                                                     alt="alternative">
+                                            </div> <!-- end of image-wrapper -->
+                                            <div class="text-wrapper">
+                                                <div class="testimonial-text">I recently had a fantastic experience with
+                                                    Funusy Bank! Their professionalism and dedication to customer
+                                                    satisfaction were evident throughout my interaction. From seamless
+                                                    transactions to helpful customer support, Funusy Bank exceeded my
+                                                    expectations. Highly recommended!
+                                                </div>
+                                                <div class="testimonial-author">Marsha Singer - Online Marketer</div>
+                                            </div> <!-- end of text-wrapper -->
+                                        </div> <!-- end of swiper-slide -->
+                                        <!-- end of slide -->
+
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
+                                            <div class="image-wrapper">
+                                                <img class="img-fluid"
+                                                     src="{{ asset('FRONT/images/testimonial-4.jpg') }}"
+                                                     alt="alternative">
+                                            </div> <!-- end of image-wrapper -->
+                                            <div class="text-wrapper">
+                                                <div class="testimonial-text">Congratulations to the entire Funusy Bank
+                                                    team! Your professionalism and hard work are truly inspiring. Keep
+                                                    up the fantastic job!
+                                                </div>
+                                                <div class="testimonial-author">Ronda Louis - Online Marketer</div>
+                                            </div> <!-- end of text-wrapper -->
+                                        </div> <!-- end of swiper-slide -->
+                                        <!-- end of slide -->
+
+                                    </div> <!-- end of swiper-wrapper -->
+
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-next"></div>
+                                    <div class="swiper-button-prev"></div>
+                                    <!-- end of add arrows -->
+
+                                </div> <!-- end of swiper-container -->
+                            </div> <!-- end of slider-container -->
+                            <!-- end of text slider -->
+
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+                </div> <!-- end of container -->
+            </div> <!-- end of slider-2 -->
+            <!-- end of testimonials -->
+            <div style="text-align: center;">
+                <a class="btn-solid-reg" href="{{ path('app_commentaire') }}">COMMENT</a>
+            </div>
+
+
+            <!-- Newsletter -->
+            <div class="form">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-container">
+                                <div class="above-heading">Funusy Bank Newsletter</div>
+                                <h2>Stay Updated with the Latest News for Enhanced Banking Experience</h2>
+
+                                <!-- Newsletter Form -->
+                                <form id="newsletterForm" data-toggle="validator" data-focus="false">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control-input" id="nemail" required>
+                                        <label class="label-control" for="nemail">Email</label>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group checkbox">
+                                        <input type="checkbox" id="nterms" value="Agreed-to-Terms" required>I've read
+                                        and agree to Funusy's written <a href="privacy-policy.html">Privacy Policy</a>
+                                        and <a href="terms-conditions.html">Terms Conditions</a>
+                                        <div class="help-block with-errors"></div>
+                                        <div class="form-group checkbox">
+                                            <input type="checkbox" id="nterms" value="Agreed-to-Terms" required>hhhhhhhh
+                                            <a href="pages-account-settings-account.html">acount settings</a>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="form-control-submit-button">SUBSCRIBE</button>
+                                        </div>
+                                        <div class="form-message">
+                                            <div id="nmsgSubmit" class="h3 text-center hidden"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <!-- end of newsletter form -->
+
+                            </div> <!-- end of text-container -->
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="icon-container">
+                        <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                            </a>
+                        </span>
+                                <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x"></i>
+                            </a>
+                        </span>
+                                <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                            </a>
+                        </span>
+                                <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x"></i>
+                            </a>
+                        </span>
+                                <span class="fa-stack">
+                            <a href="#your-link">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-linkedin-in fa-stack-1x"></i>
+                            </a>
+                        </span>
+                            </div> <!-- end of col -->
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+                </div> <!-- end of container -->
+            </div> <!-- end of form -->
+            <!-- end of newsletter -->
+
+
+            <!-- Footer -->
+            <svg class="footer-frame" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+                 viewBox="0 0 1920 79">
+                <defs>
+                    <style>.cls-2 {
+                            fill: #5f4def;
+                        }</style>
+                </defs>
+                <title>footer-frame</title>
+                <path class="cls-2"
+                      d="M0,72.427C143,12.138,255.5,4.577,328.644,7.943c147.721,6.8,183.881,60.242,320.83,53.737,143-6.793,167.826-68.128,293-60.9,109.095,6.3,115.68,54.364,225.251,57.319,113.58,3.064,138.8-47.711,251.189-41.8,104.012,5.474,109.713,50.4,197.369,46.572,89.549-3.91,124.375-52.563,227.622-50.155A338.646,338.646,0,0,1,1920,23.467V79.75H0V72.427Z"
+                      transform="translate(0 -0.188)"/>
+            </svg>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="footer-col first">
+                                <h4>About Funusy</h4>
+                                <p class="p-small">At Funusy Bank, we're dedicated to redefining banking for you. Join
+                                    us for a simplified and rewarding financial experience.</p>
+                            </div>
+                        </div> <!-- end of col -->
+                        <div class="col-md-4">
+                            <div class="footer-col middle">
+                                <h4>Important Links</h4>
+                                <ul class="list-unstyled li-space-lg p-small">
+                                    <li class="media">
+                                        <i class="fas fa-square"></i>
+                                        <div class="media-body">Our business partners <a class="white"
+                                                                                         href="#your-link">startupguide.com</a>
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <i class="fas fa-square"></i>
+                                        <div class="media-body">Read our <a class="white" href="terms-conditions.html">Terms
+                                                & Conditions</a>, <a class="white" href="privacy-policy.html">Privacy
+                                                Policy</a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> <!-- end of col -->
+                        <div class="col-md-4">
+                            <div class="footer-col last">
+                                <h4>Contact</h4>
+                                <ul class="list-unstyled li-space-lg p-small">
+                                    <li class="media">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        <div class="media-body">1,2 rue André Ampère - Pôle Technologique - El
+                                            Ghazala.
+                                        </div>
+                                    </li>
+                                    <li class="media">
+                                        <i class="fas fa-envelope"></i>
+                                        <div class="media-body"><a class="white" href="mailto:contact@tivo.com">contact@funusy.com</a>
+                                            <i class="fas fa-globe"></i><a class="white" href="#your-link">www.funusy.com</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> <!-- end of col -->
+                    </div> <!-- end of row -->
+                </div> <!-- end of container -->
+            </div> <!-- end of footer -->
+            <!-- end of footer -->
+
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <p class="p-small">Copyright © 2024 <a href="https://inovatik.com">Template by
+                                    Inovatik</a><br>
+                                Distributed By <a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                            </p>
+                        </div> <!-- end of col -->
+                    </div> <!-- enf of row -->
+                </div> <!-- end of container -->
+            </div>
+
+            <!-- end of copyright -->
+
+
+            <!-- Scripts -->
+            {% block js %}
+                <script src="{{ asset('FRONT/js/jquery.min.js') }}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+                <script src="{{ asset('FRONT/js/popper.min.js') }}"></script> <!-- Popper tooltip library for Bootstrap -->
+                <script src="{{ asset('FRONT/js/bootstrap.min.js') }}"></script> <!-- Bootstrap framework -->
+                <script src="{{ asset('FRONT/js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+                <script src="{{ asset('FRONT/js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+                <script src="{{ asset('FRONT/js/jquery.magnific-popup.js') }}"></script> <!-- Magnific Popup for lightboxes -->
+                <script src="{{ asset('FRONT/js/validator.min.js') }}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+                <script src="{{ asset('FRONT/js/scripts.js') }}"></script> <!-- Custom scripts -->
+            {% endblock %}
+
+        </div><!-- end of copyright -->
+    </div><!-- end of copyright -->
+</div><!-- end of copyright -->
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Simulation de crédit{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding: 100px 0">
+        <h1>Credit simulation</h1>
+
+        <form action="{{ path('app_simulation_index') }}" method="get">
+            <div class="form-group">
+                <label for="montant">Amount :</label>
+                <input type="text" id="montant" name="montant" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="duree">Duration (Month) :</label>
+                <input type="text" id="duree" name="duree" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="taux">Interest rate :</label>
+                <input type="text" id="taux" name="taux" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Validate</button>
+        </form>
+
+        {% if echeances is defined %}
+            <div class="card-body">
+                <div class="table-responsive text-nowrap">
+                    <table id="project-table" class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Échéance</th>
+                            <th>Principal</th>
+                            <th>Valeur Résiduelle</th>
+                            <th>Intérêts</th>
+                            <th>Mensualité</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for echeance in echeances %}
+                            <tr>
+                                <td>{{ echeance.numero }}</td>
+                                <td>{{ echeance.echeance ? echeance.echeance|date('Y-m-d') : '' }}</td>
+                                <td>{{ echeance.principal }}</td>
+                                <td>{{ echeance.valeurResiduelle }}</td>
+                                <td>{{ echeance.interets }}</td>
+                                <td>{{ echeance.mensualite }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <form action="{{ path('app_simulation_export') }}" method="post">
+                <input type="hidden" name="montant" value="{{ montant }}">
+                <input type="hidden" name="duree" value="{{ duree }}">
+                <input type="hidden" name="taux" value="{{ taux }}">
+                <button type="submit" class="btn btn-success">Download Excel</button>
+            </form>
+        {% endif %}
+    </div>
+{% endblock %}

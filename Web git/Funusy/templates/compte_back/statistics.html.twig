@@ -1,0 +1,47 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Statistics</h1>
+
+        <div class="text-center mt-4">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var stats = {{ stats|json_encode()|raw }};
+            var labels = Object.keys(stats);
+            var data = Object.values(stats);
+
+            var ctx = document.getElementById('pieChart').getContext('2d');
+            var pieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [
+                        'rgba(227, 180, 44, 0.6)',   // Red (#bd902c)
+                        'rgba(155,170,221,0.72)',    // Blue (#253992)
+            'rgba(201,194,179,1)',   // Yellow (#e3b42c)
+,
+                        ],
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        display: true,
+                        position: 'bottom',
+                    },
+                }
+            });
+        });
+    </script>
+{% endblock %}

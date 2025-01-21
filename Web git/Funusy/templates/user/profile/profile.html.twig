@@ -1,0 +1,10 @@
+{# templates/user/profile.html.twig #}
+
+{% block body %}
+    <h1>User Profile</h1>
+
+    <p>Welcome, {{ user.getEmailUser() }}</p>
+    {# Display other user data as needed #}
+
+    <a href="{{ path('app_logout') }}">Logout</a>
+{% endblock %}

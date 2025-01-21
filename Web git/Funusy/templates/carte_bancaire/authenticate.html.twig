@@ -1,0 +1,164 @@
+{% extends 'BACK/base.html.twig' %}
+
+
+{% block stylesheets %}
+{{ parent() }}
+{% endblock %}
+
+{% block body %}
+<!-- Include Flashy default partial -->
+
+<section style="background-color: #7a7a7a;">
+    <h1 style="color:white;">Authentification </h1>
+
+    <div>
+        <div class="form-floating mb-3" style="margin: auto; width: 50%;">
+            <!-- Input field for CIN -->
+            <label for="cinInput" class="form-label">CIN</label>
+            <input type="text" class="form-control" id="cinInput" readonly>
+        </div>
+
+        <button id="openCameraBtn" style="
+            font-size: 14px;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: 700;
+            width: 17%;
+            border: none;
+            padding: 14px 0 12px;
+            background: #101010;
+            margin: 10px;
+            margin-left: 07px;">Open Camera</button>
+        <button id="captureBtn" style="
+            font-size: 14px;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-weight: 700;
+            width: 17%;
+            border: none;
+            padding: 14px 0 12px;
+            background: #101010;
+            margin: 10px;
+            margin-left: 07px;
+            display: none;">Capture Image</button>
+        <video id="cameraFeed" width="320" height="240" autoplay style="display: none;"></video>
+        <canvas id="capturedImageCanvas" style="display: none;"></canvas>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const openCameraBtn = document.getElementById('openCameraBtn');
+        const cameraFeed = document.getElementById('cameraFeed');
+        const capturedImageCanvas = document.getElementById('capturedImageCanvas');
+        const captureBtn = document.getElementById('captureBtn');
+        const cinInput = document.getElementById('cinInput');
+        let stream = null;
+
+        openCameraBtn.addEventListener('click', async function (event) {
+            event.preventDefault(); // Prevent page from refreshing
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                cameraFeed.srcObject = stream;
+                cameraFeed.style.display = 'block'; // Show the video element
+                captureBtn.style.display = 'block';
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        }, { passive: true });
+
+        captureBtn.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent page from refreshing
+            startCapturing();
+        },
+            { passive: true });
+
+
+        function startCapturing() {
+            const intervalId = setInterval(captureAndSend, 2000); // Capture every 3 seconds
+            captureBtn.addEventListener('click', stopCapturing, { passive: true }); // Add { passive: true } here
+
+            function captureAndSend() {
+                console.log('Starting capture and send process...');
+
+                if (stream && cameraFeed.srcObject) {
+                    console.log('Stream and camera feed are available.');
+
+                    const track = stream.getVideoTracks()[0];
+                    if (!track) {
+                        console.error('No video tracks available.');
+                        return;
+                    }
+                    console.log('Video track found:', track);
+
+                    const imageCapture = new ImageCapture(track);
+                    imageCapture.grabFrame().then(capturedImageBitmap => {
+                        console.log('Image captured successfully:', capturedImageBitmap);
+
+                        capturedImageCanvas.width = capturedImageBitmap.width;
+                        capturedImageCanvas.height = capturedImageBitmap.height;
+                        const ctx = capturedImageCanvas.getContext('2d');
+                        ctx.drawImage(capturedImageBitmap, 0, 0);
+                        const capturedImageDataUrl = capturedImageCanvas.toDataURL('image/jpeg');
+                        console.log('Captured image data URL:', capturedImageDataUrl);
+
+                        // Send the captured image data to the server for processing
+                        const formData = new FormData();
+                        formData.append('capturedImageData', capturedImageDataUrl);
+
+                        fetch('{{ path('app_auth') }}', {
+                            method: 'POST',
+                            body: formData
+                        }).then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.json();
+                        }).then(data => {
+                            console.log('Response from server:', data);
+                            // Retrieve the CIN from the response
+                            // Update the value of the cinField with the captured CIN if it's not null
+                            const cin = data.cin;
+                            if (Number(cin)) {
+                                const cinField = document.getElementById('cinInput');
+                                if (cinField !== null) {
+                                    cinField.value = cin;
+                                } else {
+                                    console.error('CIN field not found in the DOM.');
+                                }
+                                console.log('test')
+                                console.log(cinField.value);
+
+                            } else {
+                                console.error('No valid CIN received from the server.');
+                            }
+
+
+                            // Update the value of the cinField with the captured CIN
+
+
+                            // Stop capturing after updating the cinField
+                            stopCapturing();
+                        }).catch(error => {
+                            console.error('Error processing server response:', error);
+                        });
+                    }).catch(error => {
+                        console.error('Error capturing image:', error);
+                    });
+                } else {
+                    console.error('Stream or camera feed not available.');
+                }
+            }
+
+
+            function stopCapturing() {
+                clearInterval(intervalId);
+                captureBtn.removeEventListener('click', stopCapturing);
+                stream.getTracks().forEach(track => track.stop()); // Stop the camera feed
+                cameraFeed.style.display = 'none';
+            }
+        }
+    });
+</script>
+
+{% endblock %}

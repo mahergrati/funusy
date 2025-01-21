@@ -1,0 +1,63 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Credit index{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding: 100px 0">
+        <h1>Credit index</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>IdCredit</th>
+                <th>MontantCredit</th>
+                <th>DureeCredit</th>
+                <th>DateCredit</th>
+                <th>TauxCredit</th>
+                <th>Status</th>
+                <th>User</th>
+                <th>actions</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for credit in credits %}
+                <tr>
+                    <td>{{ credit.getIdCredit() }}</td>
+                    <td>{{ credit.getMontantCredit() }}</td>
+                    <td>{{ credit.getDureeCredit() }}</td>
+                    <td>{{ credit.getDateCredit() ? credit.getDateCredit()|date('Y-m-d') : '' }}</td>
+                    <td>{{ credit.getTauxCredit() }}</td>
+                    <td>{{ credit.getStatus() }}</td>
+                    <td>{{ credit.getUser() ? credit.getUser().getNomUser() : 'Utilisateur inconnu' }}</td>
+
+
+                    <td>
+                        <a href="{{ path('app_credit_back_show', {'idCredit': credit.idCredit}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 style="fill: rgba(0, 0, 0, 1);">
+                                <path d="M12 9a3.02 3.02 0 0 0-3 3c0 1.642 1.358 3 3 3 1.641 0 3-1.358 3-3 0-1.641-1.359-3-3-3z"></path>
+                                <path d="M12 5c-7.633 0-9.927 6.617-9.948 6.684L1.946 12l.105.316C2.073 12.383 4.367 19 12 19s9.927-6.617 9.948-6.684l.106-.316-.105-.316C21.927 11.617 19.633 5 12 5zm0 12c-5.351 0-7.424-3.846-7.926-5C4.578 10.842 6.652 7 12 7c5.351 0 7.424 3.846 7.926 5-.504 1.158-2.578 5-7.926 5z"></path>
+                            </svg>
+                        </a>
+                        <a href="{{ path('app_credit_back_edit', {'idCredit': credit.idCredit}) }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 style="fill: rgba(0, 0, 0, 1)">
+                                <path d="m16 2.012 3 3L16.713 7.3l-3-3zM4 14v3h3l8.299-8.287-3-3zm0 6h16v2H4z"></path>
+                            </svg>
+                        </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="7">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-secondary text-decoration-none px-5 align-self-end" href="{{ path('app_credit_back_new') }}">Create
+            new</a>
+
+    </div>
+{% endblock %}

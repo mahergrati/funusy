@@ -1,0 +1,39 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Commentaire{% endblock %}
+
+{% block body %}
+<br>
+<br>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Commentaire Details</h3>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th scope="row" style="width: 30%;">ID</th>
+                        <td>{{ commentaire.idCommentaire }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Content</th>
+                        <td>{{ commentaire.contenue }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Date</th>
+                        <td>{{ commentaire.dateCommentaire ? commentaire.dateCommentaire|date('Y-m-d') : '' }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a href="{{ path('app_commentaire') }}">back to list</a>
+            <a href="{{ path('app_commentaire_f_edit', {'idCommentaire': commentaire.idCommentaire}) }}" class="btn btn-warning">Edit</a>
+        </div>
+    </div>
+
+    {{ include('commentaire_f/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Agence index{% endblock %}
+
+{% block body %}
+
+    <h1> Agence Disponible</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>CodeAgence</th>
+                <th>Adresse</th>
+                <th>Codepostal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for agence in agences %}
+            <tr>
+                <td>{{ agence.codeAgence }}</td>
+                <td>{{ agence.adresse }}</td>
+                <td>{{ agence.codepostal }}</td>
+                <td>
+                    <a href="{{ path('app_agence_show', {'codeAgence': agence.codeAgence}) }}">plus de details</a>
+                    {#<a href="{{ path('app_agence_edit', {'codeAgence': agence.codeAgence}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

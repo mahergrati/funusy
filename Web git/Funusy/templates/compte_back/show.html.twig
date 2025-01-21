@@ -1,0 +1,38 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Compte Details{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h1 class="text-center mb-4">Compte Details</h1>
+                <div class="card border-dark">
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-4 text-dark font-weight-bold">Rib</dt>
+                            <dd class="col-sm-8">{{ compte.getRib() }}</dd>
+                            
+                            <dt class="col-sm-4 text-dark font-weight-bold">Solde</dt>
+                            <dd class="col-sm-8">{{ compte.getSolde() }}</dd>
+                            
+                            <dt class="col-sm-4 text-dark font-weight-bold">Date d'Ouverture</dt>
+                            <dd class="col-sm-8">{{ compte.getDateOuverture() ? compte.getDateOuverture()|date('Y-m-d') : '' }}</dd>
+                            
+                            <dt class="col-sm-4 text-dark font-weight-bold">Type de Compte</dt>
+                            <dd class="col-sm-8">{{ compte.getTypeCompte() }}</dd>
+                            
+                            <dt class="col-sm-4 text-dark font-weight-bold">ID Utilisateur</dt>
+                            <dd class="col-sm-8">{{ compte.getIdUser() }}</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="mt-4 text-center">
+                    <a href="{{ path('app_compte_back_index') }}" class="btn btn-secondary">Back to List</a>
+                    <a href="{{ path('app_compte_back_edit', {'rib': compte.rib}) }}" class="btn btn-primary">Edit</a>
+                    {{ include('compte_back/delete.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

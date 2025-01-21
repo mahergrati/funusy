@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.css" />
+    <style type="text/css">
+        html, body { height: 100%; margin: 0; padding: 0; }
+        #map-container { position: relative; height: 100%; }
+        #map { height: calc(100% - 40px); z-index: 1; }
+        #search-container { position: absolute; bottom: 0; left: 0; width: 100%; height: 40px; background-color: #fff; padding: 5px; box-sizing: border-box; z-index: 2; }
+        #search { width: calc(100% - 100px); height: 20px; padding: 5px; border-radius: 3px; border: 1px solid #ccc; float: left; }
+        #search-btn { width: 80px; height: 30px; border-radius: 5px; border: none; background-color: #007bff; color: #fff; cursor: pointer; float: right; }
+    
+        .map-container {
+            width: 100%;
+            height: 300px; /* Adjust height as needed */
+            overflow: hidden;
+        }
+    </style>
+    <!-- Include the Leaflet library -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script type="text/javascript">
+        let map;
+        let marker;
+
+        function initialize() {
+            var latlng = L.latLng(35.01919986431499, 9.571662492973193);
+            map = L.map('map').setView(latlng, 5);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            map.on('click', function(event) {
+                // Clear previous marker, if any
+                if (marker) {
+                    map.removeLayer(marker);
+                }
+                // Create a new marker at the clicked position
+                marker = L.marker(event.latlng).addTo(map);
+                // Set latitude and longitude values in the form
+                document.getElementById('basic-icon-default-latitude').value = event.latlng.lat;
+                document.getElementById('basic-icon-default-longitude').value = event.latlng.lng;
+                // Clear the location field
+                document.getElementById('basic-icon-default-fullLocation').value = '';
+
+                // Reverse geocode to get full location name
+                fetch('https://nominatim.openstreetmap.org/reverse?lat=' + event.latlng.lat + '&lon=' + event.latlng.lng + '&format=json')
+                    .then(response => response.json())
+                    .then(data => {
+                        var fullLocation = data.display_name;
+                        // Set full location name in the form
+                        document.getElementById('basic-icon-default-fullLocation').value = fullLocation;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching location details:', error);
+                    });
+            });
+
+            // Search functionality
+            var searchField = document.getElementById('search');
+            var searchBtn = document.getElementById('search-btn');
+            searchBtn.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent form submission
+                searchLocation(searchField.value);
+            });
+        }
+
+        function setLocation(lat, lng, fullLocation) {
+            // Set latitude and longitude values in the form
+            document.getElementById('basic-icon-default-latitude').value = lat;
+            document.getElementById('basic-icon-default-longitude').value = lng;
+            // Set full location name in the form
+            document.getElementById('basic-icon-default-fullLocation').value = fullLocation;
+        }
+
+        function searchLocation(query) {
+            fetch('https://nominatim.openstreetmap.org/search?q=' + query + '&format=json')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.length > 0) {
+                        var lat = data[0].lat;
+                        var lng = data[0].lon;
+                        var fullLocation = data[0].display_name;
+                        map.setView([lat, lng], 14);
+                        // Set location details in the form
+                        setLocation(lat, lng, fullLocation);
+                        // Set the full location name in the input field
+                        document.getElementById('basic-icon-default-fullLocation').value = fullLocation;
+                    } else {
+                        alert('Location not found');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching search results:', error);
+                    alert('Error fetching search results');
+                });
+        }
+
+        // Call initialize function when window is loaded
+        window.onload = initialize;
+    </script>
+</head>
+<body>
+    <div id="map-container">
+        <div id="map"></div>
+        <div id="search-container">
+            <input type="text" id="search" placeholder="Search location..." class="form-control" />
+            <button id="search-btn">Search</button>
+        </div>
+    </div>
+</body>
+</html>

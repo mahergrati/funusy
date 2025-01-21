@@ -1,0 +1,34 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}CarteBancaire{% endblock %}
+
+{% block body %}
+    <h1>CarteBancaire</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>NumCarte</th>
+                <td>{{ carte_bancaire.numCarte }}</td>
+            </tr>
+            <tr>
+                <th>DateExp</th>
+                <td>{{ carte_bancaire.dateExp ? carte_bancaire.dateExp|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ carte_bancaire.code }}</td>
+            </tr>
+            <tr>
+                <th>Cvv2</th>
+                <td>{{ carte_bancaire.cvv2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_carte_bancaire_index') }}">back to list</a>
+
+    <a href="{{ path('app_carte_bancaire_edit', {'numCarte': carte_bancaire.numCarte}) }}">edit</a>
+
+    {{ include('carte_bancaire/_delete_form.html.twig') }}
+{% endblock %}

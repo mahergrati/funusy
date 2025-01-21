@@ -1,0 +1,48 @@
+{% if pagination.getTotalItemCount() > 0 %}
+    {% set currentPageNumber = pagination.getCurrentPageNumber() %}
+    {% set totalPages = pagination.getTotalItemCount() // pagination.getItemNumberPerPage() %}
+    {% set startPage = max(1, currentPageNumber - 2) %}
+    {% set endPage = min(totalPages, currentPageNumber + 2) %}
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if currentPageNumber > 0 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ 'page': currentPageNumber - 1 })) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if startPage > 0 %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ 'page': 1 })) }}">1</a>
+                </li>
+                {% if startPage > 0 %}
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                {% endif %}
+            {% endif %}
+            {% for page in range(startPage, endPage + 1) %}
+                <li class="page-item {% if currentPageNumber == page %}active{% endif %}">
+                    <a class="page-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ 'page': page })) }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+            {% if endPage < totalPages %}
+                {% if endPage < totalPages - 1 %}
+                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                {% endif %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ 'page': totalPages })) }}">{{ totalPages }}</a>
+                </li>
+            {% endif %}
+            {% if currentPageNumber < totalPages %}
+                <li class="page-item">
+                    <a class="page-link" href="{{ path(app.request.attributes.get('_route'), app.request.query.all | merge({ 'page': currentPageNumber + 1 })) }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

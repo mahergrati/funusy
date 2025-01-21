@@ -1,0 +1,59 @@
+{{ form_start(form) }}
+{{ form_widget(form._token) }}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center"></div>
+    
+    <div class="card-body">
+        {% if form_errors(form) %}
+            <div class="alert alert-danger" role="alert">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+        
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="basic-icon-default-user">user</label>
+                {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+                <div class="text-danger mt-2">{{ form_errors(form.user) }}</div>
+            </div>
+            
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="basic-icon-default-rib">RIB</label>
+                {{ form_widget(form.rib, {'attr': {'class': 'form-control'}}) }}
+                <div class="text-danger mt-2">{{ form_errors(form.rib) }}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="basic-icon-default-solde">Balance</label>
+                {{ form_widget(form.solde, {'attr': {'class': 'form-control'}}) }}
+                <div class="text-danger mt-2">{{ form_errors(form.solde) }}</div>
+            </div>
+            
+            <div class="mb-3 col-md-6">
+                <label class="form-label" for="basic-icon-default-dateOuverture">Opening Date</label>
+                <div class="input-group input-group-merge">
+                    {{ form_widget(form.dateOuverture, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.dateOuverture) }}</div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="mb-3 col-md-6">
+            <strong><label class="_form" for="basic-icon-default-typeCompte">Account Type :</label></strong>
+            <div class="form-check form-check-inline">
+                {{ form_widget(form.typeCompte, {'attr': {'class': '_form', 'id': 'account_type_bloque'}}) }}
+            </div>
+            <div class="text-danger mt-2">{{ form_errors(form.typeCompte) }}</div>
+         </div>
+        
+        </div>
+        
+        <button type="submit" class="btn btn-primary">{{ button_label|default('Add') }}</button>
+        <a href="{{ path('app_compte_back_index') }}" class="btn btn-secondary">Back to list</a>
+    </div>
+</div>
+
+{{ form_end(form) }}

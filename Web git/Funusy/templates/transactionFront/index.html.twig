@@ -1,0 +1,40 @@
+{% extends 'baseF.html.twig' %}
+
+
+{% block title %}Transaction{% endblock %}
+{% block body %}
+    <h1>Transaction index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdTransaction</th>
+                <th>MontantTransaction</th>
+                <th>DateTransaction</th>
+                <th>Destination</th>
+                <th>TypeTransaction</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.idTransaction }}</td>
+                <td>{{ transaction.montantTransaction }}</td>
+                <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('Y-m-d') : '' }}</td>
+                <td>{{ transaction.destination }}</td>
+                <td>{{ transaction.typeTransaction }}</td>
+                <td>
+                    <a href="{{ path('app_transactionfront_show', {'idTransaction': transaction.idTransaction}) }}">show</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_transactionfront_new') }}">Create new</a>
+{% endblock %}

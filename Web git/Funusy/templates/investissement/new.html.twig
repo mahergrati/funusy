@@ -1,0 +1,13 @@
+{# new.html.twig #}
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}New Investment{% endblock %}
+
+{% block body %}
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+            {{ include('investissement/_form.html.twig', {'button_label': 'Save'}) }}
+        </div>
+    </div>
+{% endblock %}

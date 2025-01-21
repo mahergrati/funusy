@@ -1,0 +1,14 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Edit Signale{% endblock %}
+
+{% block body %}
+    <h1>Edit Signale</h1>
+
+    {{ include('signale_front/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_signale_front_index') }}">back to list</a>
+
+    {{ include('signale_front/_delete_form.html.twig') }}
+
+{% endblock %}

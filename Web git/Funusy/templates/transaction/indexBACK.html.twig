@@ -1,0 +1,41 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Transaction index{% endblock %}
+
+{% block body %}
+    <h1>Transactions effectuées </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Destination</th>
+                <th>TypeTransaction</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.idTransaction }}</td>
+                <td>{{ transaction.montantTransaction }}</td>
+                <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('Y-m-d') : '' }}</td>
+                <td>{{ transaction.destination }}</td>
+                <td>{{ transaction.typeTransaction }}</td>
+                <td>
+                    <a href="{{ path('app_transaction_show', {'idTransaction': transaction.idTransaction}) }}">show</a>
+                   {# <a href="{{ path('app_transaction_edit', {'idTransaction': transaction.idTransaction}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_transaction_new') }}">Create new</a>
+{% endblock %}

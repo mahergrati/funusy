@@ -1,0 +1,62 @@
+{{ form_start(form) }}
+<div class="row">
+    <div class="col-md-12">
+        {% if form_errors(form) %}
+            <div class="alert alert-danger" role="alert">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            {{ form_label(form.contenue, 'Content', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.contenue, {'attr': {'class': 'form-control', 'rows': 10, 'style': 'resize: vertical;', 'placeholder': 'Enter your comment'}}) }}
+            {{ form_errors(form.contenue) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(form.dateCommentaire, 'Comment Date', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.dateCommentaire, {'attr': {'class': 'form-control js-datepicker'}}) }}
+            {{ form_errors(form.dateCommentaire) }}
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            {{ form_label(form.idProjet, 'Project', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.idProjet, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.idProjet) }}
+        </div>
+    </div>
+</div>
+<button onclick="validateForm()" type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
+
+<script>
+    function validateForm() {
+        var contentField = document.getElementById('{{ form.contenue.vars.id }}');
+        var contentValue = contentField.value.trim();
+
+        // Retrieve the submitted comments from localStorage
+        var submittedComments = localStorage.getItem('submittedComments');
+
+        // Check if there are any submitted comments
+        if (submittedComments) {
+            // Split the submitted comments into an array
+            var submittedCommentsArray = submittedComments.split(',');
+            // Check if the array length exceeds 3
+            if (submittedCommentsArray.length >= 3) {
+                // If more than 3 comments have been submitted, disable the button and show an alert
+                alert('You have exceeded the maximum number of comments allowed.');
+                document.querySelector('button[type="submit"]').disabled = true;
+                // Enable the button after 10 seconds
+                setTimeout(function() {
+                    document.querySelector('button[type="submit"]').disabled = false;
+                }, 30000);
+                return false; // Prevent form submission
+            }
+        }
+
+        // If less than 3 comments have been submitted, add the current comment to the list
+        localStorage.setItem('submittedComments', submittedComments ? submittedComments + ',' + contentValue : contentValue);
+        return true; // Allow form submission
+    }
+</script>

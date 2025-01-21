@@ -1,0 +1,24 @@
+{# projects_by_type.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects by Type{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Projects by Type: {{ projectType }}</h1>
+    <div class="row">
+        <div class="col">
+            {% if projects is not empty %}
+                <ul>
+                    {% for project in projects %}
+                        <li>{{ project.nomProjet }}</li>
+                        <a href="{{ path('app_projet_back_show', {'idProjet': project.idProjet}) }}">View</a>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No projects found for this type.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

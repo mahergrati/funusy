@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center; /* Center-align all content */
+        }
+        .logo img {
+            width: 100px; /* Adjust as needed */
+            height: auto;
+            display: block;
+            margin: 0 auto 20px; /* Center the logo */
+            animation: spin 2s linear infinite; /* Add animation to the logo */
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        h1 {
+            color: #253992; /* Funusy blue */
+        }
+        dl {
+            margin-top: 20px;
+            text-align: left; /* Align the list items to the left */
+        }
+        dt {
+            text-align: justify;
+        }
+        .marketing-content {
+            margin-top: 30px;
+            text-align: justify; /* Justify the text */
+            line-height: 1.5; /* Adjust line height for better readability */
+        }
+        /* Additional CSS styles for the table */
+        dl {
+            text-align: justify;
+            border: 1px solid #000; /* Add border to the table */
+            padding: 10px;
+        }
+        dt, dd {
+            text-align: justify;
+            padding: 5px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        <div class="logo">
+            <img class="img-fluid" src="{{ asset('public/FRONT/images/Asset.png') }}" alt="alternative">        </div>
+        <h1>Account Details</h1>
+        <div class="marketing-content">
+            <p>Funusy is delighted to present you with your new account details. We are committed to providing you with excellent service and support throughout your banking journey.</p>
+            <p>This account is exclusively designed for you, our valued customer. With Funusy, managing your finances has never been easier. Enjoy a wide range of benefits and features tailored to your needs.</p>
+            <p>If you have any questions or need assistance, our dedicated team is here to help. Welcome to Funusy, where your satisfaction is our priority.</p>
+            <p>Sincerely,</p>
+           
+        </div>
+        <dl>
+            <dt> <strong>First Name :</strong>  Madame </dt>
+            <dd> <strong>Last Name :</strong>  Ameni</dd>
+            <dt><strong>Rib : &nbsp;</strong>{{ compte.getRib() }}</dt>
+            <dd><strong>Balance :</strong>{{ compte.getSolde() }}</dd>
+          
+            <dt><strong>Opening date :</strong>{{ compte.getDateOuverture() ? compte.getDateOuverture()|date('Y-m-d') : '' }} </dt>
+            <dd><strong> Account type : </strong>{{ compte.getTypeCompte() }}</dd>
+        </dl>
+    </div>
+</body>
+</html>

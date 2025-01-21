@@ -1,0 +1,16 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Edit Credit{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding: 100px 0">
+        <h1>Edit Credit</h1>
+
+        {{ include('credit_back/_form.html.twig', {'button_label': 'Update'}) }}
+
+        <a href="{{ path('app_credit_back_index') }}">back to list</a>
+
+        {{ include('credit_back/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}

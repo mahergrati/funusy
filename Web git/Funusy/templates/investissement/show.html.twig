@@ -1,0 +1,50 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Investissement{% endblock %}
+
+{% block body %}
+      <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="card">
+                <h5 class="card-header">Investment </h5>
+                <div class="table-responsive text-nowrap">
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdInvestissement</th>
+                <td>{{ investissement.idInvestissement }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ investissement.montant }}</td>
+            </tr>
+            <tr>
+                <th>DateInv</th>
+                <td>{{ investissement.dateInv ? investissement.dateInv|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Periode</th>
+                <td>{{ investissement.periode }}</td>
+            </tr>
+            <tr>
+                <th>User</th>
+                <td>{{ investissement.user.nomUser }}</td>
+            </tr>
+            <tr>
+                <th>Projet</th>
+                <td>{{ investissement.projet.nomProjet }}</td>
+            </tr>
+        </tbody>
+    </table>
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+    <a href="{{ path('app_investissement_index') }}" class="btn btn-secondary">Back to list</a>
+
+    <a href="{{ path('app_investissement_edit', {'idInvestissement': investissement.idInvestissement}) }}" class="btn btn-primary">Edit</a>
+         <br>
+    <a>{{ include('investissement/_delete_form.html.twig') }}</a>
+</div>
+
+        </div>
+{% endblock %}

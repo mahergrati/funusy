@@ -1,0 +1,36 @@
+{% extends 'baseF.html.twig' %}
+
+
+{% block title %}Transaction{% endblock %}
+{% block body %}
+    <h1>Transaction</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdTransaction</th>
+                <td>{{ transaction.idTransaction }}</td>
+            </tr>
+            <tr>
+                <th>MontantTransaction</th>
+                <td>{{ transaction.montantTransaction }}</td>
+            </tr>
+            <tr>
+                <th>DateTransaction</th>
+                <td>{{ transaction.dateTransaction ? transaction.dateTransaction|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td>{{ transaction.destination }}</td>
+            </tr>
+            <tr>
+                <th>TypeTransaction</th>
+                <td>{{ transaction.typeTransaction }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_transactionfront_index') }}">back to list</a>
+    <a href="{{ path('app_transaction_pdf', {'idTransaction': transaction.idTransaction}) }}">Generate PDF</a>
+
+ {% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'carte_bancaire/base.html.twig' %}
+
+{% block body %}
+<div class="wrapper" id="app">
+  <div class="card-form">
+    <div class="card-list">
+      <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
+        <!-- Add your content here if needed -->
+        <h1>Welcome to the Credit Card Form</h1>
+        <p>This is a sample content. You can add your own content here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

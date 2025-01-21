@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Rib</th>
+                    <th>Solde</th>
+                    <th>DateOuverture</th>
+                    <th>TypeCompte</th>
+                    <th>Id_user</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody id="compteTableBody">
+                {% for compte in comptes %}
+                    <tr>
+                        <td>{{ compte.getRib() }}</td>
+                        <td>{{ compte.getSolde() }}</td>
+                        <td>{{ compte.getDateOuverture() ? compte.getDateOuverture()|date('Y-m-d') : '' }}</td>
+                        <td>{{ compte.getTypeCompte() }}</td>
+                        <td>{{ compte.getIdUser()}}</td>
+                        <td>
+                            <a href="{{ path('app_compte_back', {'rib': compte.rib}) }}">show</a>
+                            <a href="{{ path('app_compte_back_edit', {'rib': compte.rib}) }}">edit</a>
+                            <form action="{{ path('app_compte_back_delete', {'rib': compte.rib}) }}" method="post" style="display: inline-block;">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ compte.rib) }}">
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">No records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

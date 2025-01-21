@@ -1,0 +1,54 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Garantie index{% endblock %}
+
+{% block body %}
+    <div class="container" style="padding: 100px 0">
+
+        <h1>Garantie index</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>IdGarantie</th>
+                <th>IdCredit</th>
+                <th>NatureGarantie</th>
+                <th>ValeurGarantie</th>
+                <th>Preuve</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for garantie in garanties %}
+                <tr>
+                    <td>{{ garantie.idGarantie }}</td>
+                    <td>{{ garantie.idCredit }}</td>
+                    <td>{{ garantie.natureGarantie }}</td>
+                    <td>{{ garantie.valeurGarantie }}</td>
+                    <td>
+                        {% if garantie.preuve %}
+                            <a href="{{ asset('uploads/preuve/' ~ garantie.preuve) }}"
+                               target="_blank">{{ garantie.preuve }}</a>
+                        {% else %}
+                            No proof provided
+                        {% endif %}
+                    </td>
+
+                    <td>
+                        <a href="{{ path('app_garantie_f_show', {'idGarantie': garantie.idGarantie}) }}">Show</a>
+                        <a href="{{ path('app_garantie_f_edit', {'idGarantie': garantie.idGarantie}) }}">Edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if credit is defined %}
+            <a href="{{ path('app_garantie_f_new', {'id_credit': credit.idCredit}) }}">Create new</a>
+        {% endif %}
+    </div>
+{% endblock %}

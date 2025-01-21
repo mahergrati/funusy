@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="574.0" stylesheets="@Stylesheet/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pidev.esprit.Controllers.Overview.OverviewController">
+   <center>
+      <AnchorPane prefHeight="226.0" prefWidth="543.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane layoutX="42.0" prefHeight="220.0" prefWidth="444.0">
+               <children>
+                  <TableView fx:id="transactionsTable" layoutX="80.0" layoutY="23.0" prefHeight="182.0" prefWidth="392.0" stylesheets="@Stylesheet/ADMIN.css">
+                     <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="75.0" text="id" />
+                        <TableColumn fx:id="sourceColumn" prefWidth="108.0" text="source" />
+                        <TableColumn fx:id="dateColumn" prefWidth="84.79997253417969" text="destination" />
+                        <TableColumn fx:id="amountColumn" prefWidth="113.5999755859375" text="amount" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </center>
+   <top>
+      <AnchorPane fx:id="top_Anchor" prefHeight="173.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="exchange_rates" layoutX="10.0" layoutY="14.0" prefHeight="34.0" prefWidth="578.0" style="-fx-background-color: EBF9EC;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Text fx:id="message" layoutX="33.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dgdgdgdg" wrappingWidth="416.5366897583008">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children></Pane>
+            <Label fx:id="Balance" alignment="TOP_LEFT" layoutX="23.0" layoutY="71.0" prefHeight="70.0" prefWidth="186.0" text="Balance:                50 000.00 TND" wrapText="true">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Text fx:id="message1" layoutX="167.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction History" wrappingWidth="416.5366897583008">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

@@ -1,0 +1,16 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+    <h1>Edit Investissement</h1>
+
+    {{ include('investissement_front/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+    {{ include('investissement_front/_delete_form.html.twig') }}
+{% endblock %}

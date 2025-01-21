@@ -1,0 +1,14 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Compte index{% endblock %}
+
+{% block body %}
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+            <h3 class="fw-bold">Create a new account </h3>
+
+{{ include('compte_back/_form.html.twig') }}
+</div>
+</div>
+{% endblock %}

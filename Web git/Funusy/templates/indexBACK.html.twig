@@ -1,0 +1,144 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    {# Add a search input field #}
+    <div class="input-group mb-3">
+        <input type="text" id="search" class="form-control" placeholder="Search by CIN...">
+    </div>
+
+    <div class="table-responsive text-nowrap">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id_user</th>
+                    <th>NomUser</th>
+                    <th>PrenomUser</th>
+                    <th>EmailUser</th>
+                    <th>Mdp</th>
+                    <th>Salaire</th>
+                    <th>DateNaissance</th>
+                    <th>Cin</th>
+                    <th>Tel</th>
+                    <th>AdresseUser</th>
+                    <th>RoleUser</th>
+                    <th>NumericCode</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody id="userTable">
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.getIdUser() }}</td>
+                        <td>{{ user.getNomUser() }}</td>
+                        <td>{{ user.getPrenomUser() }}</td>
+                        <td>{{ user.getEmailUser() }}</td>
+                        <td>{{ user.getMdp() }}</td>
+                        <td>{{ user.getSalaire() }}</td>
+                        <td>{{ user.getDateNaissance() ? user.getDateNaissance()|date('Y-m-d') : '' }}</td>
+                        <td>{{ user.getCin() }}</td>
+                        <td>{{ user.getTel() }}</td>
+                        <td>
+                            <td>
+                    <select name="adresseUser" required>
+                        <option value="" disabled selected>Select Address</option>
+                        {% set adresseOptions = [
+                            'ARIANA', 'BEJA', 'BEN_AROUS', 'BIZERTE', 'GABES', 'GAFSA', 'JENDOUBA',
+                            'KAIROUAN', 'KASSERINE', 'KEBILI', 'KEF', 'MAHDIA', 'MANOUBA',
+                            'MEDENINE', 'MONASTIR', 'NABEUL', 'SFAX', 'SIDI_BOUZID', 'SILIANA',
+                            'SOUSSE', 'TATAOUINE', 'TOZEUR', 'TUNIS_CAPITALE', 'ZAGHOUAN'
+                        ] %}
+                        {% for option in adresseOptions %}
+                            <option value="{{ option }}" {% if option == user.getAdresseUser() %}selected{% endif %}>
+                                {{ option }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </td>  
+                        </td>
+                        <td>{{ user.getRoleUser() }}</td>
+                        <td>{{ user.getNumericCode() }}</td>
+                        <td>
+                            <a href="{{ path('app_user_show', {'id_user': user.getIdUser()}) }}">show</a>
+                            <a class="dropdown-item text-danger" href="{{ path('app_user_edit', {'id_user': user.getIdUser()}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="13">no records found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('app_user_new') }}">Create new</a>
+       <a href="/statistics" class="btn btn-primary">Go to Statistics</a>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var searchRequest = null;
+            $("#search").keyup(function() {
+                var minlength = 3;
+                var that = this;
+                var value = $(this).val();
+                var userTable = $("#userTable");
+                if (value.length >= minlength) {
+                    if (searchRequest != null)
+                        searchRequest.abort();
+                    searchRequest = $.ajax({
+                        type: "GET",
+                        url: "{{ path('ajax_search') }}",
+                        data: {
+                            'q': value
+                        },
+                        dataType: "text",
+                        success: function(msg) {
+                            if (value == $(that).val()) {
+                                var result = JSON.parse(msg);
+                                userTable.empty();
+                                $.each(result, function(key, arr) {
+                                    $.each(arr, function(id, value) {
+                                        if (key == 'users') {
+                                            if (id != 'error') {
+                                                var userRow = '<tr><td>' + id + '</td><td>' + value + '</td></tr>';
+                                                userTable.append(userRow);
+                                            } else {
+                                                var errorRow = '<tr><td colspan="13">' + value + '</td></tr>';
+                                                userTable.append(errorRow);
+                                            }
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    });
+                } else {
+                    // Clear the table when the search input is empty or less than the minimum length
+                    userTable.html('');
+                    {% for user in users %}
+                        var userRow = '<tr><td>{{ user.getIdUser() }}</td><td>{{ user.getNomUser() }}</td><td>{{ user.getPrenomUser() }}</td><td>{{ user.getEmailUser() }}</td><td>{{ user.getMdp() }}</td><td>{{ user.getSalaire() }}</td><td>{{ user.getDateNaissance() ? user.getDateNaissance()|date('Y-m-d') : '' }}</td><td>{{ user.getCin() }}</td><td>{{ user.getTel() }}</td><td>{# ... (existing code for address selection) ... #}</td><td>{{ user.getRoleUser() }}</td><td>{{ user.getNumericCode() }}</td><td><a href="{{ path('app_user_show', {'id_user': user.getIdUser()}) }}">show</a><a class="dropdown-item text-danger" href="{{ path('app_user_edit', {'id_user': user.getIdUser()}) }}">edit</a></td></tr>';
+                        userTable.append(userRow);
+                    {% else %}
+                        var errorRow = '<tr><td colspan="13">no records found</td></tr>';
+                        userTable.append(errorRow);
+                    {% endfor %}
+                }
+            });
+        });
+    </script>
+
+{% endblock %}
+{% block stat %}
+   
+    
+    {# Button to redirect to the statistics page #}
+    <a href="/statistics" class="btn btn-primary">Go to Statistics</a>
+{% endblock %}

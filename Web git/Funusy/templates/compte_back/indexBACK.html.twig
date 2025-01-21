@@ -1,0 +1,45 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Accounts Index{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Accounts Index</h1>
+
+        <div class="mt-4">
+            <div class="input-group mb-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search by Rib">
+            </div>
+        </div>
+
+        <div id="compteTableContainer">
+            {% include 'compte_back/testrech.html.twig' with {'comptes': comptes} %}
+        </div>
+
+        <div class="mt-4">
+            <a href="{{ path('app_compte_back_new') }}" class="btn btn-success">Create New</a>
+        </div>
+        <div class="mt-4">
+            {% include 'compte_back/pagination.html.twig' with {'pagination': comptes} %}
+        </div>
+    </div>
+
+    {% block search %}
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#searchInput').on('keyup', function() {
+                    var query = $(this).val();
+                    $.ajax({
+                        url: "{{ path('app_search_compte_by_rib') }}",
+                        method: 'GET',
+                        data: { query: query },
+                        success: function(response) {
+                            $('#compteTableContainer').html(response);
+                        }
+                    });
+                });
+            });
+        </script>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{# templates/user/reset/reset_verification_form.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset Password{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Reset Password</h1>
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{ form_label(form.reset_token, 'Reset Token', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.reset_token, {'attr': {'class': 'form-control input-field'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        {{ form_end(form) }}
+    </div>
+    <style>/* Custom CSS for the reset password form */
+
+.container {
+    max-width: 400px;
+    margin: auto;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.input-field {
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 0.375rem 0.75rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.input-field:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+</style>
+{% endblock %}

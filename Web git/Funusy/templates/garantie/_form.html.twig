@@ -1,0 +1,62 @@
+{{ form_start(form) }}
+{{ form_widget(form._token) }}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="fw-bold">Create a new Guarantee</h3>
+    </div>
+    <div class="card-body">
+        <form>
+            <div class="mb-3 d-flex flex-column">
+                <label class="form-label" for="basic-icon-default-idCredit">Id Credit</label>
+                <div class="input-group input-group-merge">
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="basic-icon-default-idCredit"
+                            name="{{ field_name(form.idCredit) }}"
+                            value="{{ field_value(form.idCredit) }}"
+                            placeholder="{{ field_label(form.idCredit) }}"
+                            aria-describedby="basic-icon-default-idCredit2"
+                    />
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.idCredit) }}</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-natureGarantie">Nature de la garantie</label>
+                <div class="input-group input-group-merge">
+                    {{ form_widget(form.natureGarantie, {'attr': {'class': 'form-select'}}) }}
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.natureGarantie) }}</div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-valeurGarantie">Guaranteed value</label>
+                <div class="input-group input-group-merge">
+                    <input
+                            type="float"
+                            class="form-control"
+                            id="basic-icon-default-valeurGarantie"
+                            name="{{ field_name(form.valeurGarantie) }}"
+                            value="{{ field_value(form.valeurGarantie) }}"
+                            placeholder="{{ field_label(form.valeurGarantie) }}"
+                            aria-describedby="basic-icon-default-valeurGarantie2"
+                    />
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.valeurGarantie) }}</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-preuve">Preuve (PDF)</label>
+                <div class="input-group input-group-merge">
+                    {{ form_widget(form.preuve, {'attr': {'class': 'form-control', 'accept': 'application/pdf'}}) }}
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.preuve) }}</div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Send') }}</button>
+            <a href="{{ path('app_garantie_index') }}" class="btn btn-secondary">Back to list</a>
+        </form>
+    </div>
+</div>
+
+{{ form_end(form) }}

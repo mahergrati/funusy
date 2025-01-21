@@ -1,0 +1,72 @@
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_widget(form._token) }}
+
+    <div class="mb-3">
+        <label class="form-label" for="basic-icon-default-montant">Amount in DT</label>
+        <div class="input-group input-group-merge">
+            <input
+                type="number"
+                class="form-control"
+                id="basic-icon-default-montant"
+                name="{{ field_name(form.montant) }}"
+                value="{{ field_value(form.montant) }}"
+                placeholder="{{ field_label(form.montant) }}"
+                aria-describedby="basic-icon-default-montant2"
+                step="0.01"
+            />
+        </div>
+        <div class="text-danger mt-2">{{ form_errors(form.montant) }}</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="basic-icon-default-dateInv">When will you start the Investment?</label>
+        <div class="input-group input-group-merge">
+            <input
+                type="date"
+                class="form-control"
+                id="basic-icon-default-dateInv"
+                name="{{ field_name(form.dateInv) }}"
+                {% if field_value(form.dateInv) is not null %}
+                    value="{{ field_value(form.dateInv)|date('Y-m-d') }}"
+                {% endif %}
+                placeholder="{{ field_label(form.dateInv) }}"
+                aria-describedby="basic-icon-default-dateInv2"
+            />
+        </div>
+        <div class="text-danger mt-2">{{ form_errors(form.dateInv) }}</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="basic-icon-default-periode">Period of Investment (in months)</label>
+        <div class="input-group input-group-merge">
+            <input
+                type="number"
+                class="form-control"
+                id="basic-icon-default-periode"
+                name="{{ field_name(form.periode) }}"
+                value="{{ field_value(form.periode) }}"
+                placeholder="{{ field_label(form.periode) }}"
+                aria-describedby="basic-icon-default-periode2"
+                min="3"
+                max="60"
+                step="3"
+            />
+        </div>
+        <div class="text-danger mt-2">{{ form_errors(form.periode) }}</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="basic-icon-default-user">User</label>
+        {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger mt-2">{{ form_errors(form.user) }}</div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label" for="basic-icon-default-monter">Project to invest in</label>
+        {{ form_widget(form.projet, {'attr': {'class': 'form-control'}}) }}
+        <div class="text-danger mt-2">{{ form_errors(form.projet) }}</div>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    <a href="{{ path('app_investissement_front_index') }}" class="btn btn-secondary">Back to list</a>
+{{ form_end(form) }}

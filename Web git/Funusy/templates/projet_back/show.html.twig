@@ -1,0 +1,53 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Projet{% endblock %}
+
+{% block body %}
+     <div class="content-wrapper">
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <div class="card">
+                <h5 class="card-header">Projet </h5>
+                <div class="table-responsive text-nowrap">
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>IdProjet</th>
+                        <td>{{ projet.idProjet }}</td>
+                    </tr>
+                    <tr>
+                        <th>NomProjet</th>
+                        <td>{{ projet.nomProjet }}</td>
+                    </tr>
+                    <tr>
+                        <th>MontantReq</th>
+                        <td>{{ projet.montantReq }}</td>
+                    </tr>
+                    <tr>
+                        <th>Longitude</th>
+                        <td>{{ projet.longitude }}</td>
+                    </tr>
+                    <tr>
+                        <th>Latitude</th>
+                        <td>{{ projet.latitude }}</td>
+                    </tr>
+                    <tr>
+                        <th>TypeProjet</th>
+                        <td>{{ projet.typeProjet }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ projet.description }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+        <div class="container-xxl flex-grow-1 container-p-y">
+
+            <a href="{{ path('app_projet_back_index') }}" class="btn btn-secondary">Back to list</a>
+            <a href="{{ path('app_projet_back_edit', {'idProjet': projet.idProjet}) }}" class="btn btn-primary">Edit</a>
+            <a> {{ include('projet_back/_delete_form.html.twig') }} </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

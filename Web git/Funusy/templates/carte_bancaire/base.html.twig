@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Credit Card Form | Nothing4us</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel="stylesheet" href="{{ asset('/FRONT/css/style.css') }}">
+  {% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-the-mask@0.11.1/dist/vue-the-mask.js"></script>
+    <script src="{{ asset('FRONT/js/script.js') }}"></script>
+  {% endblock %}
+</head>
+<body>
+  {% block content %}{% endblock %}
+</body>
+</html>

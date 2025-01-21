@@ -1,0 +1,45 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Projet index{% endblock %}
+
+{% block body %}
+    <h1>Projet index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdProjet</th>
+                <th>NomProjet</th>
+                <th>MontantReq</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>TypeProjet</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for projet in projets %}
+            <tr>
+                <td>{{ projet.idProjet }}</td>
+                <td>{{ projet.nomProjet }}</td>
+                <td>{{ projet.montantReq }}</td>
+                <td>{{ projet.longitude }}</td>
+                <td>{{ projet.latitude }}</td>
+                <td>{{ projet.typeProjet }}</td>
+                <td>{{ projet.description }}</td>
+                <td>
+                    <a href="{{ path('app_projet_show', {'idProjet': projet.idProjet}) }}">show</a>
+                    <a href="{{ path('app_projet_edit', {'idProjet': projet.idProjet}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_projet_new') }}">Create new</a>
+{% endblock %}

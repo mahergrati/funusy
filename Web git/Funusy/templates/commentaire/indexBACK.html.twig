@@ -1,0 +1,182 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">Commentaires</h1>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Content</th>
+                <th scope="col">Date</th>
+                <th scope="col">Actions</th>
+                <th scope="col">Translation</th>
+                <th scope="col">Texting</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for commentaire in commentaires %}
+                <tr>
+                    <td>{{ commentaire.idCommentaire }}</td>
+                    <td id="content-{{ commentaire.idCommentaire }}">{{ commentaire.contenue }}</td>
+                    <td>{{ commentaire.dateCommentaire ? commentaire.dateCommentaire|date('Y-m-d') : '' }}</td>
+                    <td>
+                        <a href="{{ path('app_commentaire_show', {'idCommentaire': commentaire.idCommentaire}) }}" class="btn btn-sm btn-info">Show</a>
+                        <a href="{{ path('app_commentaire_edit', {'idCommentaire': commentaire.idCommentaire}) }}" class="btn btn-sm btn-warning">Edit</a>
+                    </td>
+                    <td>
+                        <form onsubmit="translateComment('{{ commentaire.idCommentaire }}'); return false;">
+                            <input type="hidden" id="comment_text_{{ commentaire.idCommentaire }}" value="{{ commentaire.contenue }}">
+                            <button type="submit" class="btn btn-sm btn-primary">Translate</button>
+                        </form>
+                    </td>
+                    <td>
+                        <button onclick="showMailForm('{{ commentaire.idCommentaire }}')" class="btn btn-sm btn-success">Send Email</button>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div id="mailForm" style="display: none;">
+        <form action="{{ path('app_commentaire_send_mail_test') }}" method="post">
+            <div class="form-group">
+                <label for="recipient">Recipient</label>
+                <input type="email" class="form-control" name="recipient" placeholder="Enter recipient email">
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" name="subject" placeholder="Enter email subject">
+            </div>
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea class="form-control" name="content" id="content" rows="3" placeholder="Enter email content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+    </div>
+
+    <h2 class="mt-4">Comment Counts by Project</h2>
+    <canvas id="commentCountsChart"></canvas>
+
+    <a href="{{ path('app_commentaire_new') }}" class="btn btn-primary">Create New Comment</a>
+
+    <script>
+        function translateComment(commentId) {
+            var commentText = document.getElementById('comment_text_' + commentId).value;
+            var url = "{{ path('app_commentaire_translate', {'idCommentaire': 'COMMENT_ID'}) }}".replace('COMMENT_ID', commentId);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    document.getElementById('content-' + commentId).textContent = response.translated_comment;
+                }
+            };
+            xhr.send('comment_text=' + encodeURIComponent(commentText));
+        }
+
+        function sendMail(CommentId) {
+            try {
+                var recipient = document.getElementById('recipient').value;
+                var subject = document.getElementById('subject').value;
+                var content = document.getElementById('content').value;
+
+                var url = "{{ path('app_commentaire_send_mail_test') }}";
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    content: {
+                        recipient, subject, content
+                    },
+                    success: function (response) {
+                        alert("MAIL SENT")
+                    },
+                    error: function (xhr, status, error) {
+                        alert("FAILED")
+                    }
+                });
+            }catch (err){
+                console.log(err)
+            }
+
+        }
+
+        function showMailForm(commentId) {
+            var mailForm = document.getElementById("mailForm");
+            mailForm.style.display = "block";
+        }
+    </script>
+
+    <div style="width: 100px; height: 75px;">
+        <canvas id="commentCountsChartTiny"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Extracting project names and counts from Twig variable
+        const projects = [];
+        const counts = [];
+        {% for projet, count in commentCounts %}
+        projects.push('{{ projet }}');
+        counts.push({{ count }});
+        {% endfor %}
+
+        // Create tiny bar chart
+        var ctxTiny = document.getElementById('commentCountsChartTiny').getContext('2d');
+        var myTinyChart = new Chart(ctxTiny, {
+            type: 'bar',
+            data: {
+                labels: projects,
+                datasets: [{
+                    label: 'Comment Counts',
+                    data: counts,
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                layout: {
+                    padding: {
+                        left: 2,
+                        right: 2,
+                        top: 2,
+                        bottom: 2
+                    }
+                },
+                responsive: false,
+                maintainAspectRatio: false,
+                legend: {
+                    display: false
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            display: false
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            display: false
+                        },
+                        gridLines: {
+                            display: false
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+{% endblock %}

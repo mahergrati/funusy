@@ -1,0 +1,6 @@
+bicycle_tesseract_bridge:
+    integrations:
+        cli:
+            enabled: true
+            path: 'C:/Program Files/Tesseract-OCR/tesseract.exe'
+       

@@ -1,0 +1,20 @@
+{# compte_back/_search.html.twig #}
+
+{% block search %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchInput').on('keyup', function() {
+                var query = $(this).val();
+                $.ajax({
+                    url: "{{ path('app_search_compte_by_rib') }}",
+                    method: 'GET',
+                    data: { query: query },
+                    success: function(response) {
+                        $('#compteTableBody').html(response);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

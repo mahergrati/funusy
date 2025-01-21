@@ -1,0 +1,38 @@
+{% extends 'baseF.html.twig' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<br>
+<br>
+    <h1>Investissement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>IdInvestissement</th>
+                <td>{{ investissement.idInvestissement }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ investissement.montant }}</td>
+            </tr>
+            <tr>
+                <th>DateInv</th>
+                <td>{{ investissement.dateInv ? investissement.dateInv|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Periode</th>
+                <td>{{ investissement.periode }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_investissement_front_index') }}" class="btn btn-secondary">back to list</a>
+
+    <a href="{{ path('app_investissement_front_edit', {'idInvestissement': investissement.idInvestissement}) }}" class="btn btn-primary">edit</a>
+
+    {{ include('investissement_front/_delete_form.html.twig') }}
+{% endblock %}

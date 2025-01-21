@@ -1,0 +1,57 @@
+{% extends 'BACK/base.html.twig' %}
+
+{% block title %}Compte index{% endblock %}
+
+{% block body %}
+<br><br>
+
+{% for flashMessage in app.flashes('error') %}
+<div class="alert alert-danger" role="alert">
+    {{ flashMessage }}
+</div>
+{% endfor %}
+<br><br><br><h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Compte index</h3>
+
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Rib</th>
+                            <th>Solde</th>
+                            <th>DateOuverture</th>
+                            <th>TypeCompte</th>
+                            <th>Id_user</th>
+                            <th>actions</th>
+                        </tr>
+                    </thead>
+                   
+                </table>
+            </div>
+        </div>
+
+        <br>
+        <a href="{{ path('app_compte_back_new') }}" class="btn btn-success">Create new</a>
+
+    </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('#searchInput').on('keyup', function() {
+        var query = $(this).val();
+        $.ajax({
+            url: "{{ path('search_compte_by_rib') }}",
+            method: 'GET',
+            data: { query: query },
+            success: function(response) {
+                $('#compteTableBody').html(response);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

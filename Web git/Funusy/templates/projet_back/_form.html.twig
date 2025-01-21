@@ -1,0 +1,132 @@
+{{ form_start(form) }}
+{{ form_widget(form._token) }}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="card-title">Create a new Project</h3>
+                    <div class="mb-3">
+                        <label for="nomProjet" class="form-label">Project Name</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-company2" class="input-group-text">
+                                <i class="bx bx-buildings align-self-start mt-1"></i>
+                            </span>
+                            <input type="text" class="form-control" id="nomProjet" name="{{ field_name(form.nomProjet) }}" value="{{ field_value(form.nomProjet) }}" placeholder="Enter project name">
+                            <div class="invalid-feedback">{{ form_errors(form.nomProjet) }}</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="montantReq" class="form-label">Required Amount in DT</label>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control" id="montantReq" name="{{ field_name(form.montantReq) }}" value="{{ field_value(form.montantReq) }}" placeholder="Enter required amount">
+                            <span class="input-group-text">DT</span>
+                            <div class="invalid-feedback">{{ form_errors(form.montantReq) }}</div>
+                        </div>
+                    </div>
+                    <div class="mb-3 longitude-wrapper" style="display: none;">
+    <label class="form-label" for="basic-icon-default-longitude">Longitude</label>
+    <div class="input-group input-group-merge">
+        <span class="input-group-text"><i class="bx bx-map"></i></span>
+        <input type="text" class="form-control" id="basic-icon-default-longitude" name="{{ field_name(form.longitude) }}" value="{{ field_value(form.longitude) }}" placeholder="{{ field_label(form.longitude) }}" aria-describedby="basic-icon-default-longitude">
+    </div>
+    <div class="text-danger mt-2">{{ form_errors(form.longitude) }}</div>
+</div>
+
+<div class="mb-3 latitude-wrapper" style="display: none;">
+    <label class="form-label" for="basic-icon-default-latitude">Latitude</label>
+    <div class="input-group input-group-merge">
+        <span class="input-group-text"><i class="bx bx-map"></i></span>
+        <input type="text" class="form-control" id="basic-icon-default-latitude" name="{{ field_name(form.latitude) }}" value="{{ field_value(form.latitude) }}" placeholder="{{ field_label(form.latitude) }}" aria-describedby="basic-icon-default-latitude">
+    </div>
+    <div class="text-danger mt-2">{{ form_errors(form.latitude) }}</div>
+</div>
+
+                    <div class="mb-3">
+                        <label for="typeProjet" class="form-label">Project Type</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-company2" class="input-group-text">
+                                <i class="bx bx-buildings align-self-start mt-1"></i>
+                            </span>
+                            <select class="form-select" id="typeProjet" name="{{ field_name(form.typeProjet) }}">
+                                {% for choice in form.typeProjet.vars.choices %}
+                                    <option value="{{ choice.value }}" {% if choice.value == form.typeProjet.vars.value %} selected {% endif %}>{{ choice.label }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">{{ form_errors(form.typeProjet) }}</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="basic-icon-default-company">Description Projet</label>
+                        <div class="input-group input-group-merge flex-row">
+                            <span id="basic-icon-default-company2" class="input-group-text">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(181, 180, 180, 1);transform: scaleX(-1);msFilter:progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1);">
+                                    <path d="M5 8h2V6h3.252L7.68 18H5v2h8v-2h-2.252L13.32 6H17v2h2V4H5z"></path>
+                                </svg>
+                            </span>
+                            <textarea rows="5" maxlength="255" style="resize: none" id="basic-icon-default-company" class="form-control" name="{{ field_name(form.description) }}" placeholder="{{ field_label(form.description) }} Projet" aria-label="ACME Inc." aria-describedby="basic-icon-default-company2">{{ field_value(form.description) }}</textarea>
+                        </div>
+                        <span id="description-char-count">0/255 caractères</span>
+                        <div class="text-danger mt-2">{{ form_errors(form.description) }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="customFile">Full Location</label>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class="bx bx-map"></i></span>
+                            <input type="text" class="form-control" id="basic-icon-default-fullLocation" name="{{ field_name(form.fullLocation) }}" value="{{ field_value(form.fullLocation) }}" placeholder="{{ field_label(form.fullLocation) }}" aria-describedby="basic-icon-default-fullLocation">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user" class="form-label">User</label>
+                        <div class="input-group input-group-merge">
+                            <span id="basic-icon-default-user2" class="input-group-text">
+                                <i class="bx bx-user align-self-start mt-1"></i>
+                            </span>
+                            <select class="form-select" id="user" name="{{ field_name(form.user) }}">
+                                {% for choice in form.user.vars.choices %}
+                                    <option value="{{ choice.value }}" {% if choice.value == form.user.vars.value %} selected {% endif %}>{{ choice.label }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="invalid-feedback">{{ form_errors(form.user) }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <!-- Location Section -->
+            <div class="card mb-4">
+                <div class="card-body" style="height: 600px;">
+                    <h5 class="card-title">Location</h5>
+                    <div class="map-container" style="height: 400px;">
+                        {% include 'projet_back/map.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Send') }}</button>
+    <a href="{{ path('app_projet_back_index') }}" class="btn btn-secondary">Back to list</a>
+</div>
+
+{{ form_end(form) }}
+
+<script>
+    $(document).ready(function () {
+        const descriptionTextarea = $('#basic-icon-default-company');
+        const charCountSpan = $('#description-char-count');
+
+        descriptionTextarea.on('input', function () {
+            const charCount = $(this).val().length;
+            charCountSpan.text(`${charCount}/255 caractères`);
+        });
+
+        // Trigger the input event on page load to display the initial character count
+        descriptionTextarea.trigger('input');
+    });
+</script>

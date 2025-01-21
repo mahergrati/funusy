@@ -1,0 +1,97 @@
+{{ form_start(form) }}
+{{ form_widget(form._token) }}
+
+<div class="card mb-4">
+    <div class="card-header d-flex justify-content-between align-items-center">
+    </div>
+    <div class="card-body">
+        {% if form_errors(form) %}
+            <div class="alert alert-danger" role="alert">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+                <h3 class="card-title">Create a new Investment</h3>
+<br>
+        <div class="mb-3">
+            <label class="form-label" for="basic-icon-default-nomProjet">Amount in Dt</label>
+            <div class="input-group input-group-merge"><!-- Add icon if needed -->
+                        <span class="input-group-text">$</span>
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="basic-icon-default-montant"
+                        name="{{ field_name(form.montant) }}"
+                        value="{{ field_value(form.montant) }}"
+                        placeholder="{{ field_label(form.montant) }}"
+                        aria-describedby="basic-icon-default-montant2"
+                    />
+                     <span class="input-group-text">DT</span>
+
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.montant) }}</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-dateInv">Investment Date</label>
+                <div class="input-group input-group-merge">
+                 <span class="input-group-text"><i class="bx bx-calendar"></i></span>
+                    <input
+                        type="date"
+                        class="form-control"
+                        id="basic-icon-default-dateInv"
+                        name="{{ field_name(form.dateInv) }}"
+                        {% if field_value(form.dateInv) is not null %}
+                            value="{{ field_value(form.dateInv)|date('Y-m-d') }}"
+                        {% endif %}
+                        placeholder="{{ field_label(form.dateInv) }}"
+                        aria-describedby="basic-icon-default-dateInv2"
+                    />
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.dateInv) }}</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-periode">Period (months)</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text"><i class="bx bx-time"></i></span>
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="basic-icon-default-periode"
+                        name="{{ field_name(form.periode) }}"
+                        value="{{ field_value(form.periode) }}"
+                        placeholder="{{ field_label(form.periode) }}"
+                        aria-describedby="basic-icon-default-periode2"
+                        min="3"
+                        max="60"
+                        step="3"
+                    />
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.periode) }}</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-user">User</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text"><i class="bx bx-user"></i></span>
+                {{ form_widget(form.user, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.user) }}</div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label" for="basic-icon-default-projet">Project</label>
+                <div class="input-group input-group-merge">
+                    <span class="input-group-text"><i class="bx bx-buildings"></i></span>
+                {{ form_widget(form.projet, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="text-danger mt-2">{{ form_errors(form.projet) }}</div>
+            </div>
+            <br>
+            <div class="text-center">
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Send') }}</button>
+            <a href="{{ path('app_investissement_index') }}" class="btn btn-secondary">Back to list</a>
+    </div>
+</div>
+
+{{ form_end(form) }}
